@@ -179,7 +179,7 @@ scroll_top_arrow:  # 向顶部滚动的箭头
 # Index Page
 #---------------------------
 index:
-  banner_img: /img/default.jpg  # 首页 Banner 头图，以下相同
+  banner_img: /img/main.jpg  # 首页 Banner 头图，以下相同
   banner_img_height: 100  # 头图高度，屏幕百分比，available: 0 - 100
   banner_mask_alpha: 0.3  # 头图黑色蒙版的透明度，available: 0 - 1.0， 0 是完全透明（无蒙版），1 是完全不透明
   post_default_img: '' # 默认的文章封面图，当没有指定 index_img 时会使用该图片，若都为空则不显示任何图片
@@ -256,8 +256,8 @@ post:  # 部分配置同时控制自定义页面，注意备注
     specific: false  # 开启后，只有在文章 Front-matter 里指定 `mermaid: true` 才会在文章页启动公式转换，以便在页面不包含公式时提高加载速度
     options: { theme: 'default' }  # 接口选项，具体可见：http://mermaid-js.github.io/mermaid/#/mermaidAPI
   comments:  # 评论
-    enable: false  # 开启评论
-    type: disqus  # 指定使用的评论模块  available: disqus | valine | gitalk | utterances | changyan | livere | remark42
+    enable: true  # 开启评论
+    type: valine  # 指定使用的评论模块  available: disqus | valine | gitalk | utterances | changyan | livere | remark42
 
 
 #---------------------------
@@ -279,7 +279,7 @@ utterances:
 
 # Disqus
 disqus:
-  shortname: # your shortname
+  shortname: fluid# your shortname
   # The following are Disqusjs configurations, please ignore if DisqusJS is not required
   # 以下为 Disqusjs 支持, 国内用户如果想使用 Disqus 建议配合使用
   # https://github.com/SukkaW/DisqusJS
@@ -307,9 +307,9 @@ gitalk:
 # 完整文档 https://valine.js.org/configuration.html
 # 注意：下列配置项中的 true/false 不要用引号括起来
 valine:
-  appid:  # 从 LeanCloud 的应用中得到的 appId
-  appkey:  # 从 LeanCloud 的应用中得到的 APP Key
-  placeholder: 说点什么 # 评论框占位提示符
+  appid: 2MfFJduFpCuBqKojNN6neUjp-gzGzoHsz # 从 LeanCloud 的应用中得到的 appId
+  appkey: C0UtgJq8NyDagaBgC50jh0fB # 从 LeanCloud 的应用中得到的 APP Key
+  placeholder: 来给文章说点什么吧~ # 评论框占位提示符
   path: window.location.pathname # 当前文章页路径，用于区分不同的文章页，以保证正确读取该文章页下的评论列表
   avatar: retro # Gravatar 头像展示方式
   meta: ['nick', 'mail', 'link']  # 评论者相关属性
@@ -318,6 +318,7 @@ valine:
   highlight: false # 代码高亮
   recordIP: false # 是否记录评论者IP
   serverURLs:  # REST API 服务器地址，国际版不填
+  requiredFields: ['nick']
 
 # 畅言
 # http://changyan.kuaizhan.com/
