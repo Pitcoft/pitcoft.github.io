@@ -11,6 +11,9 @@ tags:
 - 双指针
 copyright: true
 ---
+### 题目地址
+<https://leetcode-cn.com/problems/backspace-string-compare/>
+
 ### 题目内容
 
 给定 `S` 和 `T` 两个字符串，当它们分别被输入到空白的文本编辑器后，判断二者是否相等，并返回结果。 `#` 代表退格字符。
@@ -51,7 +54,7 @@ copyright: true
 - 遍历结束把栈元素用`join`函数连接成字符串
 
 #### 复杂度分析：
-时间复杂度：$O(M+N)$
+时间复杂度：$O(M+N)$，分别遍历`S`和`T`两个字符串
 空间复杂度：$O(M+N)$
 
 #### 代码：
@@ -61,11 +64,86 @@ class Solution(object):
         def inputStr(str):
             stack = list()
             for i in str:
+                # 判断为普通字符则压栈
                 if i != '#':
                     stack.append(i)
+                # 为#且栈不为空则栈顶出栈
                 elif stack != []:
                     stack.pop()
             return ''.join(stack[:])
         return inputStr(S) == inputStr(T)
 ```
-### 方法二：
+### 方法二：双指针
+#### 思路分析：
+当遇见`#`字符时，会删除其前一个字符，也就是说，`#`的影响仅限于删除它的前一个字符而不会影响到其他字符，因此我们可以用逆序遍历整个字符串，当存在`#`字符时，就可以判断是否要删除前一个字符。具体步骤：
+1. 定义双指针，分别指向`S`和`T`两个字符串的末尾。
+2. 定义变量count，记录`#`出现的次数（也就是待删除元素的数量）。
+
+ 遍历字符串的每一个字符，如果该字符：
+- 为`#`字符，则记录的变量count加1
+- 为普通字符，则：
+	- count = 0时，表示该字符不需要删除。
+	- count > 0时，该字符删除，并且count减1。
+
+按以上逆序遍历两个字符串，会碰见以下三种情况：
+- count为0，且两个指针同时指向普通字符，判断两字符是否相等，不等返回False，相等继续判断。
+```python
+if p >= 0 and q >= 0:
+	if S[p] != T[q]:
+		return False
+```
+- 当一个字符串遍历完成，代表该字符串为“ ”，条件为`p < 0 or q < 0`，并且另一个字符串仍未遍历完（也就是已经跳出循环，处于在等待判断普通字符是否与另一个字符串相等的阶段），这时候两个字符串是不可能相等的（一个空，另一个的字符串在等待判断）,直接返回`False`。
+```python
+elif p >= 0 or q >= 0:
+	return False
+```
+- 两个字符串遍历完成，则`p`与`q`都 < 0，代表字符串都为“ ”。返回`True`。
+#### 复杂度分析：
+
+时间复杂度：$O(M+N)$，分别遍历`S`和`T`两个字符串
+空间复杂度：$O(1)$
+
+#### 代码：
+
+```python
+class Solution:
+    def backspaceCompare(self, S: str, T: str) -> bool:
+        # 定义双指针
+        p, q = len(S) - 1, len(T) - 1
+        # 定义变量记录 '#' 的数量
+        count_S, count_T = 0, 0
+        while p >= 0 or q >= 0:
+            # 遍历字符串 S
+            while p >= 0:
+                # 字符为 '#'，count_S 加 1，p指针左移
+                if S[p] == '#':
+                    cnt_S += 1
+                    p -= 1
+                # 字符为普通字符，count_S>0，删除该字符，count_S，p左移继续遍历
+                elif cnt_S > 0:
+                    cnt_S -= 1
+                    p -= 1
+                # 字符为普通字符，count_S=0，跳出循环，等待与另一个字符串判断
+                else:
+                    break
+            # 遍历字符串 T
+            while q >= 0:
+                if T[q] == '#':
+                    cnt_T += 1
+                    q -= 1
+                elif cnt_T > 0:
+                    cnt_T -= 1
+                    q -= 1
+                else:
+                    break
+            # 判断字符串两个未遍历完，跳出循环时，两个指针对应的字符是否相等
+            if p >= 0 and q >= 0:
+                if S[p] != T[q]:
+                    return False
+            # 只有一个字符串遍历完，另一个跳出循环
+            elif p >= 0 or q >= 0:
+                return False
+            p -= 1
+            q -= 1
+        return True
+```
