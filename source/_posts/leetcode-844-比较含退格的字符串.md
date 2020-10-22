@@ -118,11 +118,11 @@ class Solution:
             while p >= 0:
                 # 字符为 '#'，count_S 加 1，p指针左移
                 if S[p] == '#':
-                    cnt_S += 1
+                    count_S += 1
                     p -= 1
                 # 字符为普通字符，count_S>0，删除该字符，count_S，p左移继续遍历
-                elif cnt_S > 0:
-                    cnt_S -= 1
+                elif count_S > 0:
+                    count_S -= 1
                     p -= 1
                 # 字符为普通字符，count_S=0，跳出循环，等待与另一个字符串判断
                 else:
@@ -130,10 +130,10 @@ class Solution:
             # 遍历字符串 T
             while q >= 0:
                 if T[q] == '#':
-                    cnt_T += 1
+                    count_T += 1
                     q -= 1
-                elif cnt_T > 0:
-                    cnt_T -= 1
+                elif count_T > 0:
+                    count_T -= 1
                     q -= 1
                 else:
                     break
