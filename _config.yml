@@ -103,6 +103,11 @@ theme: fluid
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: git
-  repository: https://github.com/Pitcoft/pitcoft.github.io.git
-  branch: master
+    #- type: git
+    #  repository: https://github.com/Pitcoft/pitcoft.github.io.git
+    #  branch: master
+      type: git
+      repository: 
+        github: git@github.com:Pitcoft/pitcoft.github.io.git
+        coding: git@e.coding.net:pitcoft/pitcoft/pitcoft.git
+      branch: master
