@@ -3,11 +3,11 @@
   <title>Pitcoft - Catch the tail of time.</title>
   
   <subtitle>Walk steps step by step</subtitle>
-  <link href="http://pitcoft.com/atom.xml" rel="self"/>
+  <link href="https://pitcoft.com/atom.xml" rel="self"/>
   
-  <link href="http://pitcoft.com/"/>
+  <link href="https://pitcoft.com/"/>
   <updated>2020-10-22T15:52:30.699Z</updated>
-  <id>http://pitcoft.com/</id>
+  <id>https://pitcoft.com/</id>
   
   <author>
     <name>Pitcoft</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>leetcode 844.比较含退格的字符串</title>
-    <link href="http://pitcoft.com/2020/10/20/leetcode-844-%E6%AF%94%E8%BE%83%E5%90%AB%E9%80%80%E6%A0%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
-    <id>http://pitcoft.com/2020/10/20/leetcode-844-%E6%AF%94%E8%BE%83%E5%90%AB%E9%80%80%E6%A0%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</id>
+    <link href="https://pitcoft.com/2020/10/20/leetcode-844-%E6%AF%94%E8%BE%83%E5%90%AB%E9%80%80%E6%A0%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
+    <id>https://pitcoft.com/2020/10/20/leetcode-844-%E6%AF%94%E8%BE%83%E5%90%AB%E9%80%80%E6%A0%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</id>
     <published>2020-10-20T15:24:28.000Z</published>
     <updated>2020-10-22T15:52:30.699Z</updated>
     
@@ -33,12 +33,12 @@
     
     
     
-    <category term="leetcode" scheme="http://pitcoft.com/categories/leetcode/"/>
+    <category term="leetcode" scheme="https://pitcoft.com/categories/leetcode/"/>
     
     
-    <category term="栈" scheme="http://pitcoft.com/tags/%E6%A0%88/"/>
+    <category term="栈" scheme="https://pitcoft.com/tags/%E6%A0%88/"/>
     
-    <category term="双指针" scheme="http://pitcoft.com/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+    <category term="双指针" scheme="https://pitcoft.com/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
     
   </entry>
   

@@ -2,14 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://pitcoft.com/2020/10/20/leetcode-844-%E6%AF%94%E8%BE%83%E5%90%AB%E9%80%80%E6%A0%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</loc>
+    <loc>https://pitcoft.com/2020/10/20/leetcode-844-%E6%AF%94%E8%BE%83%E5%90%AB%E9%80%80%E6%A0%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/</loc>
     
     <lastmod>2020-10-22</lastmod>
     
   </url>
   
   <url>
-    <loc>http://pitcoft.com/about/index.html</loc>
+    <loc>https://pitcoft.com/about/index.html</loc>
     
     <lastmod>2020-10-07</lastmod>
     
@@ -17,23 +17,23 @@
   
 
   <url>
-    <loc>http://pitcoft.com/</loc>
-    <lastmod>2020-10-23</lastmod>
+    <loc>https://pitcoft.com/</loc>
+    <lastmod>2020-10-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>http://pitcoft.com/tags/%E6%A0%88/</loc>
-    <lastmod>2020-10-23</lastmod>
+    <loc>https://pitcoft.com/tags/%E6%A0%88/</loc>
+    <lastmod>2020-10-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://pitcoft.com/tags/%E5%8F%8C%E6%8C%87%E9%92%88/</loc>
-    <lastmod>2020-10-23</lastmod>
+    <loc>https://pitcoft.com/tags/%E5%8F%8C%E6%8C%87%E9%92%88/</loc>
+    <lastmod>2020-10-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -41,8 +41,8 @@
 
   
   <url>
-    <loc>http://pitcoft.com/categories/leetcode/</loc>
-    <lastmod>2020-10-23</lastmod>
+    <loc>https://pitcoft.com/categories/leetcode/</loc>
+    <lastmod>2020-10-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
