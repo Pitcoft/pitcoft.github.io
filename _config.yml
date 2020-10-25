@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: http://pitcoft.com
+url: https://pitcoft.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -102,12 +102,25 @@ theme: fluid
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
-deploy:
+#deploy:
     #- type: git
     #  repository: https://github.com/Pitcoft/pitcoft.github.io.git
     #  branch: master
-      type: git
-      repository: 
-        github: git@github.com:Pitcoft/pitcoft.github.io.git
-        coding: git@e.coding.net:pitcoft/pitcoft/pitcoft.git
-      branch: master
+#- type: git
+#      repository: 
+#      github: git@github.com:Pitcoft/pitcoft.github.io.git
+#        #coding: git@e.coding.net:pitcoft/pitcoft/pitcoft.git
+#      branch: master
+#    - type: baidu_url_submitter
+deploy:
+- type: git
+  repository: git@github.com:Pitcoft/pitcoft.github.io.git
+  branch: master
+  # other deployer
+- type: baidu_url_submitter
+baidu_url_submit:
+  count: 1000
+  host: https://pitcoft.com
+  token: XeGL6NldOQnQDuYT
+  path: baidu_urls.txt
+
