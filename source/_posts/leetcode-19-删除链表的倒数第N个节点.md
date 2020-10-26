@@ -30,23 +30,33 @@ copyright: true
 
 ### 方法一：快慢指针（一次遍历）
 #### 思路分析：
-我们在遍历链表时，依次将遍历到的节点压栈，然后再依次弹出节点，弹出的第n个即为待删除节点。
+题目需求是寻找倒数第n个节点，所以我们可以设置两个指针`slow`和`fast`对链表进行遍历，`fast`先走n步的，当`fast`走到链表末尾时，`slow`正好为待删除节点的前继节点。
+
+**具体操作：**
+
+- 初始`slow`和`fast`指针均指向哑节点。
+- 先使用`fast`指针遍历n次链表，即`fast`指针与`slow`指针相隔n-1个节点。
+- 再同时使用`fast`指针和`slow`指针遍历链表，当`fast`遍历到链表的末尾时（即`fast.next`为空指针），`slow`为倒数第n个节点的前驱节点（即`slow.next`为待删除节点）。
+
 #### 复杂度分析：
 时间复杂度：$O(L)$，`L`为该链表长度。
-空间复杂度：$O(L)$，栈的空间消耗。
+空间复杂度：$O(1)$，一次遍历。
 
 #### 代码：
 ```python
 class Solution:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        dummy = ListNode(0)
+        dummy = ListNode(0) # 设置哑节点
         dummy.next = head
-        slow, fast = dummy, dummy
+        slow, fast = dummy, dummy # 快慢指针指向哑节点
+        # 快指针先走n步
         for i in range(n):
             fast = fast.next
+        # 快慢指针同时走，直到fast指针到链表尾部，slow为待删除节点前继节点
         while fast.next:
             slow = slow.next
             fast = fast.next
+        # 删除节点
         slow.next = slow.next.next
         return dummy.next
 ```
