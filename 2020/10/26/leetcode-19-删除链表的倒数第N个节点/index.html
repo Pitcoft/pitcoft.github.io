@@ -178,7 +178,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      743 字
+      911 字
     </span>
   
 
@@ -188,7 +188,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      11
        分钟
     </span>
   
@@ -227,18 +227,27 @@
 <p>给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 n = 2.<br>当删除了倒数第二个节点后，链表变为 1-&gt;2-&gt;3-&gt;5.</p>
 </blockquote>
 <p><strong>说明：</strong><br>    给定的 n 保证是有效的。<br><strong>进阶：</strong><br>    你能尝试使用一趟扫描实现吗？</p>
-<h3 id="方法一：快慢指针（一次遍历）"><a href="#方法一：快慢指针（一次遍历）" class="headerlink" title="方法一：快慢指针（一次遍历）"></a>方法一：快慢指针（一次遍历）</h3><h4 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h4><p>我们在遍历链表时，依次将遍历到的节点压栈，然后再依次弹出节点，弹出的第n个即为待删除节点。</p>
-<h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><p>时间复杂度：$O(L)$，<code>L</code>为该链表长度。<br>空间复杂度：$O(L)$，栈的空间消耗。</p>
+<h3 id="方法一：快慢指针（一次遍历）"><a href="#方法一：快慢指针（一次遍历）" class="headerlink" title="方法一：快慢指针（一次遍历）"></a>方法一：快慢指针（一次遍历）</h3><h4 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h4><p>题目需求是寻找倒数第n个节点，所以我们可以设置两个指针<code>slow</code>和<code>fast</code>对链表进行遍历，<code>fast</code>先走n步的，当<code>fast</code>走到链表末尾时，<code>slow</code>正好为待删除节点的前继节点。</p>
+<p><strong>具体操作：</strong></p>
+<ul>
+<li>初始<code>slow</code>和<code>fast</code>指针均指向哑节点。</li>
+<li>先使用<code>fast</code>指针遍历n次链表，即<code>fast</code>指针与<code>slow</code>指针相隔n-1个节点。</li>
+<li>再同时使用<code>fast</code>指针和<code>slow</code>指针遍历链表，当<code>fast</code>遍历到链表的末尾时（即<code>fast.next</code>为空指针），<code>slow</code>为倒数第n个节点的前驱节点（即<code>slow.next</code>为待删除节点）。</li>
+</ul>
+<h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><p>时间复杂度：$O(L)$，<code>L</code>为该链表长度。<br>空间复杂度：$O(1)$，一次遍历。</p>
 <h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">removeNthFromEnd</span>(<span class="hljs-params">self, head: ListNode, n: int</span>) -&gt; ListNode:</span>
-        dummy = ListNode(<span class="hljs-number">0</span>)
+        dummy = ListNode(<span class="hljs-number">0</span>) <span class="hljs-comment"># 设置哑节点</span>
         dummy.next = head
-        slow, fast = dummy, dummy
+        slow, fast = dummy, dummy <span class="hljs-comment"># 快慢指针指向哑节点</span>
+        <span class="hljs-comment"># 快指针先走n步</span>
         <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n):
             fast = fast.next
+        <span class="hljs-comment"># 快慢指针同时走，直到fast指针到链表尾部，slow为待删除节点前继节点</span>
         <span class="hljs-keyword">while</span> fast.next:
             slow = slow.next
             fast = fast.next
+        <span class="hljs-comment"># 删除节点</span>
         slow.next = slow.next.next
         <span class="hljs-keyword">return</span> dummy.next</code></pre>
 <h3 id="方法二：递归"><a href="#方法二：递归" class="headerlink" title="方法二：递归"></a>方法二：递归</h3><h4 id="思路分析：-1"><a href="#思路分析：-1" class="headerlink" title="思路分析："></a>思路分析：</h4><p>当遇见<code>#</code>字符时，会删除其前一个字符，也就是说，<code>#</code>的影响仅限于删除它的前一个字符而不会影响到其他字符，因此我们可以用逆序遍历整个字符串，当存在<code>#</code>字符时，就可以判断是否要删除前一个字符。具体步骤：</p>
@@ -295,9 +304,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%93%BE%E8%A1%A8/">链表</a>
-                    
                       <a class="hover-with-bg" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">双指针</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E9%93%BE%E8%A1%A8/">链表</a>
                     
                   </div>
                 
