@@ -6,7 +6,7 @@
   <link href="https://pitcoft.com/atom.xml" rel="self"/>
   
   <link href="https://pitcoft.com/"/>
-  <updated>2020-10-22T15:52:30.699Z</updated>
+  <updated>2020-10-26T15:28:29.426Z</updated>
   <id>https://pitcoft.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>leetcode 19. 删除链表的倒数第N个节点</title>
+    <link href="https://pitcoft.com/2020/10/26/leetcode-19-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/"/>
+    <id>https://pitcoft.com/2020/10/26/leetcode-19-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/</id>
+    <published>2020-10-26T15:09:58.000Z</published>
+    <updated>2020-10-26T15:28:29.426Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="题目地址"><a href="#题目地址" class="headerlink" title="题目地址"></a>题目地址</h3><p><a href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/">https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/</a></p><h3 id="题目内容"><a href="#题目内容" class="headerlink" title="题目内容"></a>题目内容</h3><p>给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。</p><h4 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h4><blockquote><p>给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 n = 2.<br>当删除了倒数第二个节点后，链表变为 1-&gt;2-&gt;3-&gt;5.</p></blockquote><p><strong>说明：</strong><br>    给定的 n 保证是有效的。<br><strong>进阶：</strong><br>    你能尝试使用一趟扫描实现吗？</p><h3 id="方法一：快慢指针（一次遍历）"><a href="#方法一：快慢指针（一次遍历）" class="headerlink" title="方法一：快慢指针（一次遍历）"></a>方法一：快慢指针（一次遍历）</h3><h4 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h4><p>我们在遍历链表时，依次将遍历到的节点压栈，然后再依次弹出节点，弹出的第n个即为待删除节点。</p><h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><p>时间复杂度：$O(L)$，<code>L</code>为该链表长度。<br>空间复杂度：$O(L)$，栈的空间消耗。</p><h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">removeNthFromEnd</span>(<span class="hljs-params">self, head: ListNode, n: int</span>) -&gt; ListNode:</span>        dummy = ListNode(<span class="hljs-number">0</span>)        dummy.next = head        slow, fast = dummy, dummy        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n):            fast = fast.next        <span class="hljs-keyword">while</span> fast.next:            slow = slow.next            fast = fast.next        slow.next = slow.next.next        <span class="hljs-keyword">return</span> dummy.next</code></pre><h3 id="方法二：递归"><a href="#方法二：递归" class="headerlink" title="方法二：递归"></a>方法二：递归</h3><h4 id="思路分析：-1"><a href="#思路分析：-1" class="headerlink" title="思路分析："></a>思路分析：</h4><p>当遇见<code>#</code>字符时，会删除其前一个字符，也就是说，<code>#</code>的影响仅限于删除它的前一个字符而不会影响到其他字符，因此我们可以用逆序遍历整个字符串，当存在<code>#</code>字符时，就可以判断是否要删除前一个字符。具体步骤：</p><ol><li><p>定义双指针，分别指向<code>S</code>和<code>T</code>两个字符串的末尾。</p></li><li><p>定义变量count，记录<code>#</code>出现的次数（也就是待删除元素的数量）。</p><p>遍历字符串的每一个字符，如果该字符：</p></li></ol><ul><li>为<code>#</code>字符，则记录的变量count加1</li><li>为普通字符，则：<ul><li>count = 0时，表示该字符不需要删除。</li><li>count &gt; 0时，该字符删除，并且count减1。</li></ul></li></ul><p>按以上逆序遍历两个字符串，会碰见以下三种情况：</p><ul><li>count为0，且两个指针同时指向普通字符，判断两字符是否相等，不等返回False，相等继续判断。<pre><code class="hljs python"><span class="hljs-keyword">if</span> p &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> q &gt;= <span class="hljs-number">0</span>:<span class="hljs-keyword">if</span> S[p] != T[q]:<span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></code></pre></li><li>当一个字符串遍历完成，代表该字符串为“ ”，条件为<code>p &lt; 0 or q &lt; 0</code>，并且另一个字符串仍未遍历完（也就是已经跳出循环，处于在等待判断普通字符是否与另一个字符串相等的阶段），这时候两个字符串是不可能相等的（一个空，另一个的字符串在等待判断）,直接返回<code>False</code>。<pre><code class="hljs python"><span class="hljs-keyword">elif</span> p &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> q &gt;= <span class="hljs-number">0</span>:<span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></code></pre></li><li>两个字符串遍历完成，则<code>p</code>与<code>q</code>都 &lt; 0，代表字符串都为“ ”。返回<code>True</code>。</li></ul><h4 id="复杂度分析：-1"><a href="#复杂度分析：-1" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><p>时间复杂度：$O(M+N)$，分别遍历<code>S</code>和<code>T</code>两个字符串<br>空间复杂度：$O(1)$</p><h4 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h4><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">removeNthFromEnd</span>(<span class="hljs-params">self, head: ListNode, n: int</span>) -&gt; ListNode:</span>        dummy = ListNode(<span class="hljs-number">0</span>)        dummy.next = head        slow, fast = dummy, dummy        <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n):            fast = fast.next        <span class="hljs-keyword">while</span> fast.next:            slow = slow.next            fast = fast.next        slow.next = slow.next.next        <span class="hljs-keyword">return</span> dummy.next</code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;题目地址&quot;&gt;&lt;a href=&quot;#题目地址&quot; class=&quot;headerlink&quot; title=&quot;题目地址&quot;&gt;&lt;/a&gt;题目地址&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/remove-nth-node-from</summary>
+      
+    
+    
+    
+    <category term="leetcode" scheme="https://pitcoft.com/categories/leetcode/"/>
+    
+    
+    <category term="双指针" scheme="https://pitcoft.com/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+    
+    <category term="链表" scheme="https://pitcoft.com/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>leetcode 844.比较含退格的字符串</title>
