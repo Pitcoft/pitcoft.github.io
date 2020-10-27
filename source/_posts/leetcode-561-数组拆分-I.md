@@ -1,7 +1,7 @@
 ---
 title: 刷题笔记-leetcode 561.数组拆分I
 date: 2020-10-27 23:01:01
-index_img: https://gitee.com/pitcoft/blogimg/raw/master/img/leetcode.jpg
+index_img: https://gitee.com/pitcoft/blogimg/raw/master/img/40946355dabb3d8f6e0c8e1f3ca9d11e%20(1).jpg
 banner_img: https://gitee.com/pitcoft/blogimg/raw/master/img/bda8e32d19707e8ac881c6a8ee9cd733.jpg
 math: true
 categories:
@@ -30,7 +30,7 @@ copyright: true
 	1. n 是正整数,范围在 [1, 10000].
 	2. 数组中的元素范围在 [-10000, 10000].
 
-### 方法一：快慢指针（一次遍历）
+### 方法：数组排序
 #### 思路分析：
 题目需求是寻找倒数第n个节点，所以我们可以设置两个指针`slow`和`fast`对链表进行遍历，`fast`先走n步的，当`fast`走到链表末尾时，`slow`正好为待删除节点的前继节点。
 
@@ -38,7 +38,7 @@ copyright: true
 
 - 初始`slow`和`fast`指针均指向哑节点。
 - 先使用`fast`指针遍历n次链表，即`fast`指针与`slow`指针相隔n-1个节点。
-- 再同时使用`fast`指针和`slow`指针遍历链表，当`fast`遍历到链表的末尾时（即`fast.next`为空指针），`slow`为倒数第n个节点的前驱节点（即`slow.next`为待删除节点）。
+- 题目w`指针遍历链表，当`fast`遍历到链表的末尾时（即`fast.next`为空指针），`slow`为倒数第n个节点的前驱节点（即`slow.next`为待删除节点）。
 
 #### 复杂度分析：
 时间复杂度：$O(L)$，`L`为该链表长度。
