@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Pitcoft">
   <meta name="keywords" content="">
-  <title>刷题笔记-leetcode 19.删除链表的倒数第N个节点 - Pitcoft - Catch the tail of time.</title>
+  <title>刷题笔记-leetcode 561.数组拆分I - Pitcoft - Catch the tail of time.</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -166,8 +166,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-26 23:09" pubdate>
-        2020年10月26日 晚上
+      <time datetime="2020-10-27 23:01" pubdate>
+        2020年10月27日 晚上
       </time>
     </span>
   
@@ -178,7 +178,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      610 字
+      606 字
     </span>
   
 
@@ -218,15 +218,18 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">刷题笔记-leetcode 19.删除链表的倒数第N个节点</h1>
+            <h1 style="display: none">刷题笔记-leetcode 561.数组拆分I</h1>
             
             <div class="markdown-body" id="post-body">
-              <h3 id="题目地址"><a href="#题目地址" class="headerlink" title="题目地址"></a>题目地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/">https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/</a></p>
-<h3 id="题目内容"><a href="#题目内容" class="headerlink" title="题目内容"></a>题目内容</h3><p>给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。</p>
+              <h3 id="题目地址"><a href="#题目地址" class="headerlink" title="题目地址"></a>题目地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/array-partition-i/">https://leetcode-cn.com/problems/array-partition-i/</a></p>
+<h3 id="题目内容"><a href="#题目内容" class="headerlink" title="题目内容"></a>题目内容</h3><p>给定长度为 <strong>2n</strong> 的数组, 你的任务是将这些数分成 <strong>n</strong> 对, 例如 <strong>(a1, b1), (a2, b2), …, (an, bn)</strong> ，使得从1 到 n 的 <strong>min(ai, bi)</strong> 总和最大。</p>
 <h4 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h4><blockquote>
-<p>给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 n = 2.<br>当删除了倒数第二个节点后，链表变为 1-&gt;2-&gt;3-&gt;5.</p>
+<p><strong>输入</strong> : [1,4,3,2]</p>
+<p>** 输出**  : 4<br>** 解释**  : n 等于 2, 最大总和为 4 = min(1, 2) + min(3, 4).</p>
 </blockquote>
-<p><strong>说明：</strong><br>    给定的 n 保证是有效的。<br><strong>进阶：</strong><br>    你能尝试使用一趟扫描实现吗？</p>
+<p><strong>提示：</strong></p>
+<pre><code>1. n 是正整数,范围在 [1, 10000].
+2. 数组中的元素范围在 [-10000, 10000].</code></pre>
 <h3 id="方法一：快慢指针（一次遍历）"><a href="#方法一：快慢指针（一次遍历）" class="headerlink" title="方法一：快慢指针（一次遍历）"></a>方法一：快慢指针（一次遍历）</h3><h4 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h4><p>题目需求是寻找倒数第n个节点，所以我们可以设置两个指针<code>slow</code>和<code>fast</code>对链表进行遍历，<code>fast</code>先走n步的，当<code>fast</code>走到链表末尾时，<code>slow</code>正好为待删除节点的前继节点。</p>
 <p><strong>具体操作：</strong></p>
 <ul>
@@ -278,11 +281,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E9%93%BE%E8%A1%A8/">链表</a>
+                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E7%BB%84/">数组</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">双指针</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E9%80%92%E5%BD%92/">递归</a>
+                      <a class="hover-with-bg" href="/tags/%E6%8E%92%E5%BA%8F/">排序</a>
                     
                   </div>
                 
@@ -295,18 +296,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/27/leetcode-561-%E6%95%B0%E7%BB%84%E6%8B%86%E5%88%86-I/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">刷题笔记-leetcode 561.数组拆分I</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/20/leetcode-844-%E6%AF%94%E8%BE%83%E5%90%AB%E9%80%80%E6%A0%BC%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/">
-                        <span class="hidden-mobile">刷题笔记-leetcode 844.比较含退格的字符串</span>
+                      <a href="/2020/10/26/leetcode-19-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/">
+                        <span class="hidden-mobile">刷题笔记-leetcode 19.删除链表的倒数第N个节点</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -507,7 +502,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "刷题笔记-leetcode 19.删除链表的倒数第N个节点&nbsp;",
+        "刷题笔记-leetcode 561.数组拆分I&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
