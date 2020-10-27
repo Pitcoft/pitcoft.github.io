@@ -178,7 +178,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      606 字
+      595 字
     </span>
   
 
@@ -230,12 +230,12 @@
 <p><strong>提示：</strong></p>
 <pre><code>1. n 是正整数,范围在 [1, 10000].
 2. 数组中的元素范围在 [-10000, 10000].</code></pre>
-<h3 id="方法一：快慢指针（一次遍历）"><a href="#方法一：快慢指针（一次遍历）" class="headerlink" title="方法一：快慢指针（一次遍历）"></a>方法一：快慢指针（一次遍历）</h3><h4 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h4><p>题目需求是寻找倒数第n个节点，所以我们可以设置两个指针<code>slow</code>和<code>fast</code>对链表进行遍历，<code>fast</code>先走n步的，当<code>fast</code>走到链表末尾时，<code>slow</code>正好为待删除节点的前继节点。</p>
+<h3 id="方法：数组排序"><a href="#方法：数组排序" class="headerlink" title="方法：数组排序"></a>方法：数组排序</h3><h4 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h4><p>题目需求是寻找倒数第n个节点，所以我们可以设置两个指针<code>slow</code>和<code>fast</code>对链表进行遍历，<code>fast</code>先走n步的，当<code>fast</code>走到链表末尾时，<code>slow</code>正好为待删除节点的前继节点。</p>
 <p><strong>具体操作：</strong></p>
 <ul>
 <li>初始<code>slow</code>和<code>fast</code>指针均指向哑节点。</li>
 <li>先使用<code>fast</code>指针遍历n次链表，即<code>fast</code>指针与<code>slow</code>指针相隔n-1个节点。</li>
-<li>再同时使用<code>fast</code>指针和<code>slow</code>指针遍历链表，当<code>fast</code>遍历到链表的末尾时（即<code>fast.next</code>为空指针），<code>slow</code>为倒数第n个节点的前驱节点（即<code>slow.next</code>为待删除节点）。</li>
+<li>题目w<code>指针遍历链表，当</code>fast<code>遍历到链表的末尾时（即</code>fast.next<code>为空指针），</code>slow<code>为倒数第n个节点的前驱节点（即</code>slow.next`为待删除节点）。</li>
 </ul>
 <h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><p>时间复杂度：$O(L)$，<code>L</code>为该链表长度。<br>空间复杂度：$O(1)$，一次遍历。</p>
 <h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
