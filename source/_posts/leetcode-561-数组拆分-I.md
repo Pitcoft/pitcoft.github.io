@@ -1,33 +1,34 @@
 ---
-title: 刷题笔记-leetcode 19.删除链表的倒数第N个节点
-date: 2020-10-26 23:09:58
+title: 刷题笔记-leetcode 561.数组拆分I
+date: 2020-10-27 23:01:01
 index_img: https://gitee.com/pitcoft/blogimg/raw/master/img/leetcode.jpg
 banner_img: https://gitee.com/pitcoft/blogimg/raw/master/img/bda8e32d19707e8ac881c6a8ee9cd733.jpg
 math: true
 categories:
 - leetcode
 tags:
-- 链表
-- 双指针
-- 递归
+- 数组
+- 排序
 copyright: true
 ---
 ### 题目地址
-<https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/>
+<https://leetcode-cn.com/problems/array-partition-i/>
 
 ### 题目内容
 
-给定一个链表，删除链表的倒数第 n 个节点，并且返回链表的头结点。
+给定长度为 **2n** 的数组, 你的任务是将这些数分成 **n** 对, 例如 **(a1, b1), (a2, b2), ..., (an, bn)** ，使得从1 到 n 的 **min(ai, bi)** 总和最大。
 
 #### 示例：
 
-> 给定一个链表: 1->2->3->4->5, 和 n = 2.
-> 当删除了倒数第二个节点后，链表变为 1->2->3->5.
+> **输入** : [1,4,3,2]
+>
+> ** 输出**  : 4
+> ** 解释**  : n 等于 2, 最大总和为 4 = min(1, 2) + min(3, 4).
 
-**说明：**
-	给定的 n 保证是有效的。
-**进阶：**
-	你能尝试使用一趟扫描实现吗？
+**提示：**
+
+	1. n 是正整数,范围在 [1, 10000].
+	2. 数组中的元素范围在 [-10000, 10000].
 
 ### 方法一：快慢指针（一次遍历）
 #### 思路分析：
