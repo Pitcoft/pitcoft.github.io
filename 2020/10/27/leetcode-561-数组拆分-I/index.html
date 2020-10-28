@@ -178,7 +178,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      413 字
+      407 字
     </span>
   
 
@@ -225,13 +225,13 @@
 <h3 id="题目内容"><a href="#题目内容" class="headerlink" title="题目内容"></a>题目内容</h3><p>给定长度为 <strong>2n</strong> 的数组, 你的任务是将这些数分成 <strong>n</strong> 对, 例如 <strong>(a1, b1), (a2, b2), …, (an, bn)</strong> ，使得从1 到 n 的 <strong>min(ai, bi)</strong> 总和最大。</p>
 <h4 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h4><blockquote>
 <p><strong>输入</strong> : [1,4,3,2]</p>
-<p>** 输出** : 4<br>** 解释**  : n 等于 2, 最大总和为 4 = min(1, 2) + min(3, 4).</p>
+<p><strong>输出</strong> : 4<br><strong>解释</strong>  : n 等于 2, 最大总和为 4 = min(1, 2) + min(3, 4).</p>
 </blockquote>
 <p><strong>提示：</strong></p>
 <pre><code>1. n 是正整数,范围在 [1, 10000].
 2. 数组中的元素范围在 [-10000, 10000].</code></pre>
 <h3 id="方法：数组排序"><a href="#方法：数组排序" class="headerlink" title="方法：数组排序"></a>方法：数组排序</h3><h4 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h4><p>题目需求是将长度2n的数组拆成n对，在每个队里取最小值，然后相加取得一个最大值。</p>
-<p>例如：题目中的<code>[1,4,3,2]</code>，拆成2对，与最小数<code>1</code>匹配的数，<code>1</code>是一定可以取到的，与最大数<code>4</code>匹配，取到的一定是另外的一个数。</p>
+<p>例如：<code>[1,4,3,2]</code>拆成2对，与最小数<code>1</code>匹配的数，<code>1</code>是一定可以取到的，与最大数<code>4</code>匹配，取到的一定是另外的数。</p>
 <ul>
 <li>所以要达到收益最大化，必须为最小数匹配第二小的数；最大数匹配第二大的数。</li>
 </ul>
