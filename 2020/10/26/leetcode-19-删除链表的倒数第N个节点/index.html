@@ -227,7 +227,7 @@
 <p>给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 n = 2.<br>当删除了倒数第二个节点后，链表变为 1-&gt;2-&gt;3-&gt;5.</p>
 </blockquote>
 <p><strong>说明：</strong><br>    给定的 n 保证是有效的。<br><strong>进阶：</strong><br>    你能尝试使用一趟扫描实现吗？</p>
-<h3 id="方法一：快慢指针（一次遍历）"><a href="#方法一：快慢指针（一次遍历）" class="headerlink" title="方法一：快慢指针（一次遍历）"></a>方法一：快慢指针（一次遍历）</h3><h4 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h4><p>题目需求是寻找倒数第n个节点，所以我们可以设置两个指针<code>slow</code>和<code>fast</code>对链表进行遍历，<code>fast</code>先走n步的，当<code>fast</code>走到链表末尾时，<code>slow</code>正好为待删除节点的前继节点。</p>
+<h3 id="方法一：快慢指针（一次遍历）"><a href="#方法一：快慢指针（一次遍历）" class="headerlink" title="方法一：快慢指针（一次遍历）"></a>方法一：快慢指针（一次遍历）</h3><h4 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h4><p>题目需求是寻找倒数第n个节点，所以我们可以设置两个指针<code>slow</code>和<code>fast</code>对链表进行遍历，<code>fast</code>先走n步的，当<code>fast</code>走到链表末尾时，<code>slow</code>正好为待删除节点的前驱节点。</p>
 <p><strong>具体操作：</strong></p>
 <ul>
 <li>初始<code>slow</code>和<code>fast</code>指针均指向哑节点。</li>
@@ -243,7 +243,7 @@
         <span class="hljs-comment"># 快指针先走n步</span>
         <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(n):
             fast = fast.next
-        <span class="hljs-comment"># 快慢指针同时走，直到fast指针到链表尾部，slow为待删除节点前继节点</span>
+        <span class="hljs-comment"># 快慢指针同时走，直到fast指针到链表尾部，slow为待删除节点前驱节点</span>
         <span class="hljs-keyword">while</span> fast.next:
             slow = slow.next
             fast = fast.next
