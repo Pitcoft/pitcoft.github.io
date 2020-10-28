@@ -231,7 +231,7 @@
 <pre><code>1. n 是正整数,范围在 [1, 10000].
 2. 数组中的元素范围在 [-10000, 10000].</code></pre>
 <h3 id="方法：数组排序"><a href="#方法：数组排序" class="headerlink" title="方法：数组排序"></a>方法：数组排序</h3><h4 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h4><p>题目需求是将长度2n的数组拆成n对，在每个队里取最小值，然后相加取得一个最大值。</p>
-<p>例如：题目中的[1,4,3,2]，拆成2对，与最小数1匹配的数，1是一定可以取到的，与最大数4匹配，取到的一定是另外的一个数。</p>
+<p>例如：题目中的<code>[1,4,3,2]</code>，拆成2对，与最小数<code>1</code>匹配的数，<code>1</code>是一定可以取到的，与最大数<code>4</code>匹配，取到的一定是另外的一个数。</p>
 <ul>
 <li>所以要达到收益最大化，必须为最小数匹配第二小的数；最大数匹配第二大的数。</li>
 </ul>
@@ -240,8 +240,8 @@
 <li>做数组的原地快速排序。</li>
 <li>取下标为偶数的值求和即可。</li>
 </ul>
-<h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><p>sorted函数内部实现机制为：Timsort</p>
-<p>时间复杂度：$O(nlog(n)$，Timsort算法的时间复杂度。<br>空间复杂度：$O(n)$</p>
+<h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><p><code>sorted</code>函数内部实现机制为：<code>Timsort</code></p>
+<p>时间复杂度：$O(nlog(n))$，<code>Timsort</code>算法的时间复杂度。<br>空间复杂度：$O(n)$</p>
 <h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">arrayPairSum</span>(<span class="hljs-params">self, nums: List[int]</span>) -&gt; int:</span>
         sum = <span class="hljs-number">0</span>
