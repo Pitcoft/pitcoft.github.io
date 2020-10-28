@@ -31,7 +31,7 @@ copyright: true
 
 ### 方法一：快慢指针（一次遍历）
 #### 思路分析：
-题目需求是寻找倒数第n个节点，所以我们可以设置两个指针`slow`和`fast`对链表进行遍历，`fast`先走n步的，当`fast`走到链表末尾时，`slow`正好为待删除节点的前继节点。
+题目需求是寻找倒数第n个节点，所以我们可以设置两个指针`slow`和`fast`对链表进行遍历，`fast`先走n步的，当`fast`走到链表末尾时，`slow`正好为待删除节点的前驱节点。
 
 **具体操作：**
 
@@ -53,7 +53,7 @@ class Solution:
         # 快指针先走n步
         for i in range(n):
             fast = fast.next
-        # 快慢指针同时走，直到fast指针到链表尾部，slow为待删除节点前继节点
+        # 快慢指针同时走，直到fast指针到链表尾部，slow为待删除节点前驱节点
         while fast.next:
             slow = slow.next
             fast = fast.next

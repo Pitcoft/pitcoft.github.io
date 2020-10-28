@@ -22,7 +22,7 @@ copyright: true
 
 > **输入** : [1,4,3,2]
 >
-> ** 输出**  : 4
+> ** 输出** : 4
 > ** 解释**  : n 等于 2, 最大总和为 4 = min(1, 2) + min(3, 4).
 
 **提示：**
@@ -32,55 +32,41 @@ copyright: true
 
 ### 方法：数组排序
 #### 思路分析：
-题目需求是寻找倒数第n个节点，所以我们可以设置两个指针`slow`和`fast`对链表进行遍历，`fast`先走n步的，当`fast`走到链表末尾时，`slow`正好为待删除节点的前继节点。
+题目需求是将长度2n的数组拆成n对，在每个队里取最小值，然后相加取得一个最大值。
+
+例如：题目中的`[1,4,3,2]`，拆成2对，与最小数`1`匹配的数，`1`是一定可以取到的，与最大数`4`匹配，取到的一定是另外的一个数。
+
+- 所以要达到收益最大化，必须为最小数匹配第二小的数；最大数匹配第二大的数。
 
 **具体操作：**
 
-- 初始`slow`和`fast`指针均指向哑节点。
-- 先使用`fast`指针遍历n次链表，即`fast`指针与`slow`指针相隔n-1个节点。
-- 题目w`指针遍历链表，当`fast`遍历到链表的末尾时（即`fast.next`为空指针），`slow`为倒数第n个节点的前驱节点（即`slow.next`为待删除节点）。
+- 做数组的原地快速排序。
+- 取下标为偶数的值求和即可。
 
 #### 复杂度分析：
-时间复杂度：$O(L)$，`L`为该链表长度。
-空间复杂度：$O(1)$，一次遍历。
+
+`sorted`函数内部实现机制为：`Timsort`
+
+时间复杂度：$O(nlog(n))$，`Timsort`算法的时间复杂度。
+空间复杂度：$O(n)$
 
 #### 代码：
 ```python
 class Solution:
-    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        dummy = ListNode(0) # 设置哑节点
-        dummy.next = head
-        slow, fast = dummy, dummy # 快慢指针指向哑节点
-        # 快指针先走n步
-        for i in range(n):
-            fast = fast.next
-        # 快慢指针同时走，直到fast指针到链表尾部，slow为待删除节点前继节点
-        while fast.next:
-            slow = slow.next
-            fast = fast.next
-        # 删除节点
-        slow.next = slow.next.next
-        return dummy.next
+    def arrayPairSum(self, nums: List[int]) -> int:
+        sum = 0
+        nums.sort()
+        for i,item in enumerate(nums):
+            if i%2 == 0: # 取下标为偶数的值
+                sum += item # 求和
+        return sum
 ```
-### 方法二：递归迭代
-#### 思路分析：
-通过递归的函数`head.next= self.removeNthFromEnd(head.next, n)`从后往前计数，每次向前加一，如果`count != n`时，返回该节点`return head`，继续往前递归，当`count == n`时，返回该节点的`next`给递归的函数（也就是跳过待删除函数，传递的是待删除的函数的`next`）。
-#### 复杂度分析：
-
-时间复杂度：$O(L)$，`L`为该链表长度。
-空间复杂度：$O(1)$，一次遍历。
-
-#### 代码：
+#### 精简代码：
 
 ```python
 class Solution:
-    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        global count # 递归时count要赋值
-        if head is None:
-            count = 0
-            return None
-        else:
-            head.next= self.removeNthFromEnd(head.next, n) # 递归调用
-            count += 1 # 回溯时节点的计数
-            return head.next if count ==n else head # 删除节点
+    def arrayPairSum(self, nums) -> int:
+        return sum(sorted(nums)[::2]) # 对数组排序，隔2取一个数并求和
 ```
+#### 总结
+- 与最大与第二大匹配就可以保留第二大的数字（目的就是尽量保留大的数）
