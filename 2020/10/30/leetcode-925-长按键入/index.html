@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Pitcoft">
   <meta name="keywords" content="">
-  <title>刷题笔记-leetcode 561.数组拆分I - Pitcoft - Catch the tail of time.</title>
+  <title>leetcode 925. 长按键入 - Pitcoft - Catch the tail of time.</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -166,8 +166,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2020-10-27 23:01" pubdate>
-        2020年10月27日 晚上
+      <time datetime="2020-10-30 22:00" pubdate>
+        2020年10月30日 晚上
       </time>
     </span>
   
@@ -178,7 +178,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      407 字
+      1.1k 字
     </span>
   
 
@@ -188,7 +188,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      13
        分钟
     </span>
   
@@ -218,45 +218,111 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">刷题笔记-leetcode 561.数组拆分I</h1>
+            <h1 style="display: none">leetcode 925. 长按键入</h1>
             
             <div class="markdown-body" id="post-body">
-              <h3 id="题目地址"><a href="#题目地址" class="headerlink" title="题目地址"></a>题目地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/array-partition-i/">https://leetcode-cn.com/problems/array-partition-i/</a></p>
-<h3 id="题目内容"><a href="#题目内容" class="headerlink" title="题目内容"></a>题目内容</h3><p>给定长度为 <strong>2n</strong> 的数组, 你的任务是将这些数分成 <strong>n</strong> 对, 例如 <strong>(a1, b1), (a2, b2), …, (an, bn)</strong> ，使得从1 到 n 的 <strong>min(ai, bi)</strong> 总和最大。</p>
-<h4 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h4><blockquote>
-<p><strong>输入</strong> : [1,4,3,2]</p>
-<p><strong>输出</strong> : 4<br><strong>解释</strong> : n 等于 2, 最大总和为 4 = min(1, 2) + min(3, 4).</p>
+              <h3 id="题目地址"><a href="#题目地址" class="headerlink" title="题目地址"></a>题目地址</h3><p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/backspace-string-compare/">https://leetcode-cn.com/problems/backspace-string-compare/</a></p>
+<h3 id="题目内容"><a href="#题目内容" class="headerlink" title="题目内容"></a>题目内容</h3><p>给定 <code>S</code> 和 <code>T</code> 两个字符串，当它们分别被输入到空白的文本编辑器后，判断二者是否相等，并返回结果。 <code>#</code> 代表退格字符。</p>
+<p><strong>注意</strong>：如果对空文本输入退格字符，文本继续为空。</p>
+<h4 id="示例-1："><a href="#示例-1：" class="headerlink" title="示例 1："></a>示例 1：</h4><blockquote>
+<p>输入：S = “ab#c”, T = “ad#c”<br>输出：true<br>解释：S 和 T 都会变成 “ac”。</p>
 </blockquote>
-<p><strong>提示：</strong></p>
-<pre><code>1. n 是正整数,范围在 [1, 10000].
-2. 数组中的元素范围在 [-10000, 10000].</code></pre>
-<h3 id="方法：数组排序"><a href="#方法：数组排序" class="headerlink" title="方法：数组排序"></a>方法：数组排序</h3><h4 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h4><p>题目需求是将长度2n的数组拆成n对，在每个队里取最小值，然后相加取得一个最大值。</p>
-<p>例如：<code>[1,4,3,2]</code>拆成2对，与最小数<code>1</code>匹配的数，<code>1</code>是一定可以取到的，与最大数<code>4</code>匹配，取到的一定是另外的数。</p>
+<h4 id="示例-2："><a href="#示例-2：" class="headerlink" title="示例 2："></a>示例 2：</h4><blockquote>
+<p>输入：S = “ab##”, T = “c#d#”<br>输出：true<br>解释：S 和 T 都会变成 “”。</p>
+</blockquote>
+<h4 id="示例-3："><a href="#示例-3：" class="headerlink" title="示例 3："></a>示例 3：</h4><blockquote>
+<p>输入：S = “a##c”, T = “#a#c”<br>输出：true<br>解释：S 和 T 都会变成 “c”。</p>
+</blockquote>
+<h4 id="示例-4："><a href="#示例-4：" class="headerlink" title="示例 4："></a>示例 4：</h4><blockquote>
+<p>输入：S = “a#c”, T = “b”<br>输出：false<br>解释：S 会变成 “c”，但 T 仍然是 “b”。</p>
+</blockquote>
+<h4 id="提示："><a href="#提示：" class="headerlink" title="提示："></a>提示：</h4><p><code>1 &lt;= S.length &lt;= 200</code><br><code>1 &lt;= T.length &lt;= 200</code><br><code>S</code> 和 <code>T</code> 只含有小写字母以及字符<code> &#39;#&#39;</code>。</p>
+<h3 id="方法一：字符串重构（栈）"><a href="#方法一：字符串重构（栈）" class="headerlink" title="方法一：字符串重构（栈）"></a>方法一：字符串重构（栈）</h3><h4 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h4><p>当字符串碰见退格符<code>#</code>的时，将退格符与前一个字符串一并删除，最终返回删除后的字符串并比较两个字符串是否相等，当遍历字符串时：</p>
 <ul>
-<li>所以要达到收益最大化，必须为最小数匹配第二小的数；最大数匹配第二大的数。</li>
+<li>如果是一般的字符，则压栈。</li>
+<li>如果是退格符<code>#</code>，则把栈顶元素弹出。</li>
+<li>遍历结束把栈元素用<code>join</code>函数连接成字符串</li>
 </ul>
-<p><strong>具体操作：</strong></p>
+<h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><p>时间复杂度：$O(M+N)$，分别遍历<code>S</code>和<code>T</code>两个字符串<br>空间复杂度：$O(M+N)$</p>
+<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>(<span class="hljs-params">object</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backspaceCompare</span>(<span class="hljs-params">self, S, T</span>):</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inputStr</span>(<span class="hljs-params">str</span>):</span>
+            stack = list()
+            <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> str:
+                <span class="hljs-comment"># 判断为普通字符则压栈</span>
+                <span class="hljs-keyword">if</span> i != <span class="hljs-string">&#x27;#&#x27;</span>:
+                    stack.append(i)
+                <span class="hljs-comment"># 为#且栈不为空则栈顶出栈</span>
+                <span class="hljs-keyword">elif</span> stack != []:
+                    stack.pop()
+            <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#x27;</span>.join(stack[:])
+        <span class="hljs-keyword">return</span> inputStr(S) == inputStr(T)</code></pre>
+<h3 id="方法二：双指针"><a href="#方法二：双指针" class="headerlink" title="方法二：双指针"></a>方法二：双指针</h3><h4 id="思路分析：-1"><a href="#思路分析：-1" class="headerlink" title="思路分析："></a>思路分析：</h4><p>当遇见<code>#</code>字符时，会删除其前一个字符，也就是说，<code>#</code>的影响仅限于删除它的前一个字符而不会影响到其他字符，因此我们可以用逆序遍历整个字符串，当存在<code>#</code>字符时，就可以判断是否要删除前一个字符。具体步骤：</p>
+<ol>
+<li><p>定义双指针，分别指向<code>S</code>和<code>T</code>两个字符串的末尾。</p>
+</li>
+<li><p>定义变量count，记录<code>#</code>出现的次数（也就是待删除元素的数量）。</p>
+<p>遍历字符串的每一个字符，如果该字符：</p>
+</li>
+</ol>
 <ul>
-<li>做数组的原地快速排序。</li>
-<li>取下标为偶数的值求和即可。</li>
+<li>为<code>#</code>字符，则记录的变量count加1</li>
+<li>为普通字符，则：<ul>
+<li>count = 0时，表示该字符不需要删除。</li>
+<li>count &gt; 0时，该字符删除，并且count减1。</li>
 </ul>
-<h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><p><code>sorted</code>函数内部实现机制为：<code>Timsort</code></p>
-<p>时间复杂度：$O(nlog(n))$，<code>Timsort</code>算法的时间复杂度。<br>空间复杂度：$O(n)$</p>
-<h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">arrayPairSum</span>(<span class="hljs-params">self, nums: List[int]</span>) -&gt; int:</span>
-        sum = <span class="hljs-number">0</span>
-        nums.sort()
-        <span class="hljs-keyword">for</span> i,item <span class="hljs-keyword">in</span> enumerate(nums):
-            <span class="hljs-keyword">if</span> i%<span class="hljs-number">2</span> == <span class="hljs-number">0</span>: <span class="hljs-comment"># 取下标为偶数的值</span>
-                sum += item <span class="hljs-comment"># 求和</span>
-        <span class="hljs-keyword">return</span> sum</code></pre>
-<h4 id="精简代码："><a href="#精简代码：" class="headerlink" title="精简代码："></a>精简代码：</h4><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
-    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">arrayPairSum</span>(<span class="hljs-params">self, nums</span>) -&gt; int:</span>
-        <span class="hljs-keyword">return</span> sum(sorted(nums)[::<span class="hljs-number">2</span>]) <span class="hljs-comment"># 对数组排序，隔2取一个数并求和</span></code></pre>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
-<li>与最大与第二大匹配就可以保留第二大的数字（目的就是尽量保留大的数）</li>
+</li>
 </ul>
-
+<p>按以上逆序遍历两个字符串，会碰见以下三种情况：</p>
+<ul>
+<li>count为0，且两个指针同时指向普通字符，判断两字符是否相等，不等返回False，相等继续判断。<pre><code class="hljs python"><span class="hljs-keyword">if</span> p &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> q &gt;= <span class="hljs-number">0</span>:
+	<span class="hljs-keyword">if</span> S[p] != T[q]:
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></code></pre></li>
+<li>当一个字符串遍历完成，代表该字符串为“ ”，条件为<code>p &lt; 0 or q &lt; 0</code>，并且另一个字符串仍未遍历完（也就是已经跳出循环，处于在等待判断普通字符是否与另一个字符串相等的阶段），这时候两个字符串是不可能相等的（一个空，另一个的字符串在等待判断）,直接返回<code>False</code>。<pre><code class="hljs python"><span class="hljs-keyword">elif</span> p &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> q &gt;= <span class="hljs-number">0</span>:
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">False</span></code></pre></li>
+<li>两个字符串遍历完成，则<code>p</code>与<code>q</code>都 &lt; 0，代表字符串都为“ ”。返回<code>True</code>。</li>
+</ul>
+<h4 id="复杂度分析：-1"><a href="#复杂度分析：-1" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><p>时间复杂度：$O(M+N)$，分别遍历<code>S</code>和<code>T</code>两个字符串<br>空间复杂度：$O(1)$</p>
+<h4 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h4><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">backspaceCompare</span>(<span class="hljs-params">self, S: str, T: str</span>) -&gt; bool:</span>
+        <span class="hljs-comment"># 定义双指针</span>
+        p, q = len(S) - <span class="hljs-number">1</span>, len(T) - <span class="hljs-number">1</span>
+        <span class="hljs-comment"># 定义变量记录 &#x27;#&#x27; 的数量</span>
+        count_S, count_T = <span class="hljs-number">0</span>, <span class="hljs-number">0</span>
+        <span class="hljs-keyword">while</span> p &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> q &gt;= <span class="hljs-number">0</span>:
+            <span class="hljs-comment"># 遍历字符串 S</span>
+            <span class="hljs-keyword">while</span> p &gt;= <span class="hljs-number">0</span>:
+                <span class="hljs-comment"># 字符为 &#x27;#&#x27;，count_S 加 1，p指针左移</span>
+                <span class="hljs-keyword">if</span> S[p] == <span class="hljs-string">&#x27;#&#x27;</span>:
+                    count_S += <span class="hljs-number">1</span>
+                    p -= <span class="hljs-number">1</span>
+                <span class="hljs-comment"># 字符为普通字符，count_S&gt;0，删除该字符，count_S，p左移继续遍历</span>
+                <span class="hljs-keyword">elif</span> count_S &gt; <span class="hljs-number">0</span>:
+                    count_S -= <span class="hljs-number">1</span>
+                    p -= <span class="hljs-number">1</span>
+                <span class="hljs-comment"># 字符为普通字符，count_S=0，跳出循环，等待与另一个字符串判断</span>
+                <span class="hljs-keyword">else</span>:
+                    <span class="hljs-keyword">break</span>
+            <span class="hljs-comment"># 遍历字符串 T</span>
+            <span class="hljs-keyword">while</span> q &gt;= <span class="hljs-number">0</span>:
+                <span class="hljs-keyword">if</span> T[q] == <span class="hljs-string">&#x27;#&#x27;</span>:
+                    count_T += <span class="hljs-number">1</span>
+                    q -= <span class="hljs-number">1</span>
+                <span class="hljs-keyword">elif</span> count_T &gt; <span class="hljs-number">0</span>:
+                    count_T -= <span class="hljs-number">1</span>
+                    q -= <span class="hljs-number">1</span>
+                <span class="hljs-keyword">else</span>:
+                    <span class="hljs-keyword">break</span>
+            <span class="hljs-comment"># 判断字符串两个未遍历完，跳出循环时，两个指针对应的字符是否相等</span>
+            <span class="hljs-keyword">if</span> p &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> q &gt;= <span class="hljs-number">0</span>:
+                <span class="hljs-keyword">if</span> S[p] != T[q]:
+                    <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+            <span class="hljs-comment"># 只有一个字符串遍历完，另一个跳出循环</span>
+            <span class="hljs-keyword">elif</span> p &gt;= <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> q &gt;= <span class="hljs-number">0</span>:
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">False</span>
+            p -= <span class="hljs-number">1</span>
+            q -= <span class="hljs-number">1</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span></code></pre>
             </div>
             <hr>
             <div>
@@ -273,9 +339,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%95%B0%E7%BB%84/">数组</a>
+                      <a class="hover-with-bg" href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">双指针</a>
                     
-                      <a class="hover-with-bg" href="/tags/%E6%8E%92%E5%BA%8F/">排序</a>
+                      <a class="hover-with-bg" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">字符串</a>
                     
                   </div>
                 
@@ -288,18 +354,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/10/30/leetcode-925-%E9%95%BF%E6%8C%89%E9%94%AE%E5%85%A5/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">leetcode 925. 长按键入</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/26/leetcode-19-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/">
-                        <span class="hidden-mobile">刷题笔记-leetcode 19.删除链表的倒数第N个节点</span>
+                      <a href="/2020/10/27/leetcode-561-%E6%95%B0%E7%BB%84%E6%8B%86%E5%88%86-I/">
+                        <span class="hidden-mobile">刷题笔记-leetcode 561.数组拆分I</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -500,7 +560,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "刷题笔记-leetcode 561.数组拆分I&nbsp;",
+        "leetcode 925. 长按键入&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
