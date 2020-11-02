@@ -6,7 +6,7 @@
   <link href="https://pitcoft.com/atom.xml" rel="self"/>
   
   <link href="https://pitcoft.com/"/>
-  <updated>2020-10-31T15:48:13.439Z</updated>
+  <updated>2020-11-02T15:24:15.880Z</updated>
   <id>https://pitcoft.com/</id>
   
   <author>
@@ -21,19 +21,26 @@
     <link href="https://pitcoft.com/2020/10/31/leetcode-155-%E6%9C%80%E5%B0%8F%E6%A0%88/"/>
     <id>https://pitcoft.com/2020/10/31/leetcode-155-%E6%9C%80%E5%B0%8F%E6%A0%88/</id>
     <published>2020-10-31T15:30:13.000Z</published>
-    <updated>2020-10-31T15:48:13.439Z</updated>
+    <updated>2020-11-02T15:24:15.880Z</updated>
     
+    <content type="html"><![CDATA[<h3 id="题目地址"><a href="#题目地址" class="headerlink" title="题目地址"></a>题目地址</h3><p><a href="https://leetcode-cn.com/problems/min-stack/">https://leetcode-cn.com/problems/min-stack/</a></p><h3 id="题目内容"><a href="#题目内容" class="headerlink" title="题目内容"></a>题目内容</h3><p>设计一个支持 <code>push</code> ，<code>pop</code> ，<code>top</code> 操作，并能在常数时间内检索到最小元素的栈。</p><ul><li><code>push(x)</code> —— 将元素 x 推入栈中。</li><li><code>pop()</code> —— 删除栈顶的元素。</li><li><code>top()</code> —— 获取栈顶元素。</li><li><code>getMin()</code> —— 检索栈中的最小元素。</li></ul><h4 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h4><blockquote><p><strong>输入：</strong><br>[“MinStack”,”push”,”push”,”push”,”getMin”,”pop”,”top”,”getMin”]<br>[[],[-2],[0],[-3],[],[],[],[]]</p><p><strong>输出：</strong><br>[null,null,null,null,-3,null,0,-2]</p><p><strong>解释：</strong><br>MinStack minStack = new MinStack();<br>minStack.push(-2);<br>minStack.push(0);<br>minStack.push(-3);<br>minStack.getMin();   –&gt; 返回 -3.<br>minStack.pop();<br>minStack.top();      –&gt; 返回 0.<br>minStack.getMin();   –&gt; 返回 -2.</p></blockquote><p><strong>提示：</strong></p><ul><li><code>pop</code>、<code>top</code> 和 <code>getMin</code> 操作总是在 <strong>非空栈</strong> 上调用。</li></ul><h3 id="方法一：快慢指针（一次遍历）"><a href="#方法一：快慢指针（一次遍历）" class="headerlink" title="方法一：快慢指针（一次遍历）"></a>方法一：快慢指针（一次遍历）</h3><h4 id="思路分析："><a href="#思路分析：" class="headerlink" title="思路分析："></a>思路分析：</h4><p>题目需求是寻找倒数第n个节点，所以我们可以设置两个指针<code>slow</code>和<code>fast</code>对链表进行遍历，<code>fast</code>先走n步的，当<code>fast</code>走到链表末尾时，<code>slow</code>正好为待删除节点的前驱节点。</p><p><strong>具体操作：</strong></p><ul><li>初始<code>slow</code>和<code>fast</code>指针均指向哑节点。</li><li>先使用<code>fast</code>指针遍历n次链表，即<code>fast</code>指针与<code>slow</code>指针相隔n-1个节点。</li><li>再同时使用<code>fast</code>指针和<code>slow</code>指针遍历链表，当<code>fast</code>遍历到链表的末尾时（即<code>fast.next</code>为空指针），<code>slow</code>为倒数第n个节点的前驱节点（即<code>slow.next</code>为待删除节点）。</li></ul><h4 id="复杂度分析："><a href="#复杂度分析：" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><p>时间复杂度：$O(1)$<br>空间复杂度：$O(N)$</p><h4 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h4><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MinStack</span>:</span>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span>        self.stack = []        self.assist = [] <span class="hljs-comment"># 定义辅助栈</span>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">push</span>(<span class="hljs-params">self, x: int</span>) -&gt; <span class="hljs-keyword">None</span>:</span>        self.stack.append(x)        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> self.assist <span class="hljs-keyword">or</span> x &lt;= self.assist[<span class="hljs-number">-1</span>]: <span class="hljs-comment"># 始终压最小的数</span>            self.assist.append(x)    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">pop</span>(<span class="hljs-params">self</span>) -&gt; <span class="hljs-keyword">None</span>:</span>        <span class="hljs-keyword">if</span> self.stack.pop() == self.assist[<span class="hljs-number">-1</span>]: <span class="hljs-comment"># 执行stack.pop 判断是否与辅助栈最小值相等</span>            self.assist.pop()    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">top</span>(<span class="hljs-params">self</span>) -&gt; int:</span>        <span class="hljs-keyword">return</span> self.stack[<span class="hljs-number">-1</span>]    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">getMin</span>(<span class="hljs-params">self</span>) -&gt; int:</span>        <span class="hljs-keyword">return</span> self.assist[<span class="hljs-number">-1</span>]</code></pre><h3 id="方法二：递归迭代"><a href="#方法二：递归迭代" class="headerlink" title="方法二：递归迭代"></a>方法二：递归迭代</h3><h4 id="思路分析：-1"><a href="#思路分析：-1" class="headerlink" title="思路分析："></a>思路分析：</h4><p>通过递归的函数<code>head.next= self.removeNthFromEnd(head.next, n)</code>从后往前计数，每次向前加一，如果<code>count != n</code>时，返回该节点<code>return head</code>，继续往前递归，当<code>count == n</code>时，返回该节点的<code>next</code>给递归的函数（也就是跳过待删除函数，传递的是待删除的函数的<code>next</code>）。</p><h4 id="复杂度分析：-1"><a href="#复杂度分析：-1" class="headerlink" title="复杂度分析："></a>复杂度分析：</h4><p>时间复杂度：$O(L)$，<code>L</code>为该链表长度。<br>空间复杂度：$O(1)$，一次遍历。</p><h4 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h4><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Solution</span>:</span>    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">removeNthFromEnd</span>(<span class="hljs-params">self, head: ListNode, n: int</span>) -&gt; ListNode:</span>        <span class="hljs-keyword">global</span> count <span class="hljs-comment"># 递归时count要赋值</span>        <span class="hljs-keyword">if</span> head <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:            count = <span class="hljs-number">0</span>            <span class="hljs-keyword">return</span> <span class="hljs-literal">None</span>        <span class="hljs-keyword">else</span>:            head.next= self.removeNthFromEnd(head.next, n) <span class="hljs-comment"># 递归调用</span>            count += <span class="hljs-number">1</span> <span class="hljs-comment"># 回溯时节点的计数</span>            <span class="hljs-keyword">return</span> head.next <span class="hljs-keyword">if</span> count ==n <span class="hljs-keyword">else</span> head <span class="hljs-comment"># 删除节点</span></code></pre>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;题目地址&quot;&gt;&lt;a href=&quot;#题目地址&quot; class=&quot;headerlink&quot; title=&quot;题目地址&quot;&gt;&lt;/a&gt;题目地址&lt;/h3&gt;&lt;p&gt;&lt;a href=&quot;https://leetcode-cn.com/problems/min-stack/&quot;&gt;https://</summary>
+      
     
     
     
     <category term="leetcode" scheme="https://pitcoft.com/categories/leetcode/"/>
     
     
-    <category term="链表" scheme="https://pitcoft.com/tags/%E9%93%BE%E8%A1%A8/"/>
+    <category term="栈" scheme="https://pitcoft.com/tags/%E6%A0%88/"/>
     
-    <category term="双指针" scheme="https://pitcoft.com/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
+    <category term="设计" scheme="https://pitcoft.com/tags/%E8%AE%BE%E8%AE%A1/"/>
     
-    <category term="递归" scheme="https://pitcoft.com/tags/%E9%80%92%E5%BD%92/"/>
+    <category term="辅助栈" scheme="https://pitcoft.com/tags/%E8%BE%85%E5%8A%A9%E6%A0%88/"/>
     
   </entry>
   
@@ -137,9 +144,9 @@
     <category term="leetcode" scheme="https://pitcoft.com/categories/leetcode/"/>
     
     
-    <category term="双指针" scheme="https://pitcoft.com/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
-    
     <category term="栈" scheme="https://pitcoft.com/tags/%E6%A0%88/"/>
+    
+    <category term="双指针" scheme="https://pitcoft.com/tags/%E5%8F%8C%E6%8C%87%E9%92%88/"/>
     
   </entry>
   
