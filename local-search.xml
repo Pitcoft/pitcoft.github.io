@@ -4,6 +4,44 @@
   
   
   <entry>
+    <title>HTTP协议详解笔记</title>
+    <link href="/2021/01/19/HTTP%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/"/>
+    <url>/2021/01/19/HTTP%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/</url>
+    
+    <content type="html"><![CDATA[<h3 id="HTTP协议简介"><a href="#HTTP协议简介" class="headerlink" title="HTTP协议简介"></a>HTTP协议简介</h3><p>超文本传输协议（英文：Hyper Text Transfer Protocol，HTTP）是一种用于分布式、协作式和超媒体信息系统的应用层协议。HTTP是万维网的数据通信的基础。HTTP有很多应用，但最著名的是用于web浏览器和web服务器之间的双工通信。</p><p>HTTP的发展是由蒂姆·伯纳斯-李于1989年在欧洲核子研究组织（CERN）所发起。HTTP的标准制定由万维网协会（World Wide Web Consortium，W3C）和互联网工程任务组（Internet Engineering Task Force，IETF）进行协调，最终发布了一系列的RFC，其中最著名的是1999年6月公布的 RFC 2616，定义了HTTP协议中现今广泛使用的一个版本——HTTP 1.1。</p><p>2014年12月，互联网工程任务组（IETF）的Hypertext Transfer Protocol Bis（httpbis）工作小组将HTTP/2标准提议递交至IESG进行讨论，于2015年2月17日被批准。 HTTP/2标准于2015年5月以RFC 7540正式发表，取代HTTP 1.1成为HTTP的实现标准。</p><p>推荐书籍：<a href="https://book.douban.com/subject/10746113/">HTTP权威指南</a></p><h3 id="HTTP协议概述"><a href="#HTTP协议概述" class="headerlink" title="HTTP协议概述"></a>HTTP协议概述</h3><p>HTTP是一个客户端终端（用户）和服务器端（网站）请求和应答的标准（TCP）。通过使用网页浏览器、网络爬虫或者其它的工具，客户端发起一个HTTP请求到服务器上指定端口（默认端口为80）。我们称这个客户端为用户代理程序（user agent）。应答的服务器上存储着一些资源，比如HTML文件和图像。我们称这个应答服务器为源服务器（origin server）。在用户代理和源服务器中间可能存在多个“中间层”，比如代理服务器、网关或者隧道（tunnel）。</p><p>尽管TCP/IP协议是互联网上最流行的应用，HTTP协议中，并没有规定必须使用它或它支持的层。事实上，HTTP可以在任何互联网协议上，或其他网络上实现。HTTP假定其下层协议提供可靠的传输。因此，任何能够提供这种保证的协议都可以被其使用。因此也就是其在TCP/IP协议族使用TCP作为其传输层。</p><p>通常，由HTTP客户端发起一个请求，创建一个到服务器指定端口（默认是80端口）的TCP连接。HTTP服务器则在那个端口监听客户端的请求。一旦收到请求，服务器会向客户端返回一个状态，比如”HTTP/1.1 200 OK”，以及返回的内容，如请求的文件、错误消息、或者其它信息。</p><h3 id="HTTP工作原理"><a href="#HTTP工作原理" class="headerlink" title="HTTP工作原理"></a>HTTP工作原理</h3><p>HTTP协议定义Web客户端如何从Web服务器请求Web页面，以及服务器如何把Web页面传送给客户端。HTTP协议采用了请求/响应模型。客户端向服务器发送一个请求报文，请求报文包含请求的方法、URL、协议版本、请求头部和请求数据。服务器以一个状态行作为响应，响应的内容包括协议的版本、成功或者错误代码、服务器信息、响应头部和响应数据。</p><p>以下是 HTTP 请求/响应的步骤：</p><ol><li><p>客户端连接到Web服务器<br>一个HTTP客户端，通常是浏览器，与Web服务器的HTTP端口（默认为80）建立一个TCP套接字连接。例如，<a href="https://pitcoft.com/">https://pitcoft.com/</a></p></li><li><p>发送HTTP请求<br>通过TCP套接字，客户端向Web服务器发送一个文本的请求报文，一个请求报文由请求行、请求头部、空行和请求数据4部分组成。</p></li><li><p>服务器接受请求并返回HTTP响应<br>Web服务器解析请求，定位请求资源。服务器将资源复本写到TCP套接字，由客户端读取。一个响应由状态行、响应头部、空行和响应数据4部分组成。</p></li><li><p>释放连接TCP连接<br>若connection 模式为close，则服务器主动关闭TCP连接，客户端被动关闭连接，释放TCP连接;若connection 模式为keepalive，则该连接会保持一段时间，在该时间内可以继续接收请求;</p></li><li><p>客户端浏览器解析HTML内容<br>客户端浏览器首先解析状态行，查看表明请求是否成功的状态代码。然后解析每一个响应头，响应头告知以下为若干字节的HTML文档和文档的字符集。客户端浏览器读取响应数据HTML，根据HTML的语法对其进行格式化，并在浏览器窗口中显示。</p></li></ol><p>在浏览器地址栏键入URL，按下回车之后会经历以下流程：</p><ul><li><ol><li>浏览器向 DNS 服务器请求解析该 URL 中的域名所对应的 IP 地址;</li></ol></li><li><ol start="2"><li>解析出 IP 地址后，根据该 IP 地址和默认端口 80，和服务器建立TCP连接;</li></ol></li><li><ol start="3"><li>浏览器发出读取文件(URL 中域名后面部分对应的文件)的HTTP 请求，该请求报文作为 TCP 三次</li></ol></li><li><ol start="4"><li>握手的第三个报文的数据发送给服务器;</li></ol></li><li><ol start="5"><li>服务器对浏览器请求作出响应，并把对应的 html 文本发送给浏览器;</li></ol></li><li><ol start="6"><li>释放 TCP连接;</li></ol></li><li><ol start="7"><li>浏览器将该 html 文本并显示内容; 　</li></ol></li></ul><h3 id="HTTP请求方法"><a href="#HTTP请求方法" class="headerlink" title="HTTP请求方法"></a>HTTP请求方法</h3><p>HTTP/1.1协议中共定义了八种方法（也叫“动作”）来以不同方式操作指定的资源：</p><h4 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h4><p>向指定的资源发出“显示”请求。使用GET方法应该只用在读取数据，而不应当被用于产生“副作用”的操作中，例如在Web Application中。其中一个原因是GET可能会被网络蜘蛛等随意访问。</p><h4 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h4><p>与GET方法一样，都是向服务器发出指定资源的请求。只不过服务器将不传回资源的本文部分。它的好处在于，使用这个方法可以在不必传输全部内容的情况下，就可以获取其中“关于该资源的信息”（元信息或称元数据）。</p><h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><p>向指定资源提交数据，请求服务器进行处理（例如提交表单或者上传文件）。数据被包含在请求本文中。这个请求可能会创建新的资源或修改现有资源，或二者皆有。</p><h4 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h4><p>向指定资源位置上传其最新内容。</p><h4 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h4><p>请求服务器删除Request-URI所标识的资源。</p><h4 id="TRACE"><a href="#TRACE" class="headerlink" title="TRACE"></a>TRACE</h4><p>回显服务器收到的请求，主要用于测试或诊断。</p><h4 id="OPTIONS"><a href="#OPTIONS" class="headerlink" title="OPTIONS"></a>OPTIONS</h4><p>这个方法可使服务器传回该资源所支持的所有HTTP请求方法。用’*’来代替资源名称，向Web服务器发送OPTIONS请求，可以测试服务器功能是否正常运作。</p><h4 id="CONNECT"><a href="#CONNECT" class="headerlink" title="CONNECT"></a>CONNECT</h4><p>HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。通常用于SSL加密服务器的链接（经由非加密的HTTP代理服务器）。</p><p>注意事项：</p><ul><li>方法名称是区分大小写的。当某个请求所针对的资源不支持对应的请求方法的时候，服务器应当返回状态码405（Method Not Allowed），当服务器不认识或者不支持对应的请求方法的时候，应当返回状态码501（Not Implemented）。</li><li>HTTP服务器至少应该实现GET和HEAD方法，其他方法都是可选的。当然，所有的方法支持的实现都应当匹配下述的方法各自的语义定义。此外，除了上述方法，特定的HTTP服务器还能够扩展自定义的方法。例如PATCH（由 RFC 5789 指定的方法）用于将局部修改应用到资源。</li></ul><h3 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h3><p>所有HTTP响应的第一行都是状态行，依次是当前HTTP版本号，3位数字组成的状态代码，以及描述状态的短语，彼此由空格分隔。</p><p>状态代码的第一个数字代表当前响应的类型：</p><ul><li>1xx消息——请求已被服务器接收，继续处理</li><li>2xx成功——请求已成功被服务器接收、理解、并接受</li><li>3xx重定向——需要后续操作才能完成这一请求</li><li>4xx请求错误——请求含有词法错误或者无法被执行</li><li>5xx服务器错误——服务器在处理某个正确请求时发生错误</li></ul><p>虽然 RFC 2616 中已经推荐了描述状态的短语，例如”200 OK”，”404 Not Found”，但是WEB开发者仍然能够自行决定采用何种短语，用以显示本地化的状态描述或者自定义信息。</p><h3 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h3><p>超文本传输协议（HTTP）的统一资源定位符将从因特网获取信息的五个基本元素包括在一个简单的地址中：</p><ul><li><p>传送协议。</p></li><li><p>层级URL标记符号(为[//],固定不变)</p></li><li><p>访问资源需要的凭证信息（可省略）</p></li><li><p>服务器。（通常为域名，有时为IP地址）</p></li><li><p>端口号。（以数字方式表示，若为HTTP的默认值“:80”可省略）</p></li><li><p>路径。（以“/”字符区别路径中的每一个目录名称）</p></li><li><p>查询。（GET模式的窗体参数，以“?”字符为起点，每个参数以“&amp;”隔开，再以“=”分开参数名称与数据，通常以UTF8的URL编码，避开字符冲突的问题）</p></li><li><p>片段。以“#”字符为起点</p></li></ul><p>以<a href="https://www.pitcoft.com:80/news/index.html?id=250&amp;page=1">https://www.pitcoft.com:80/news/index.html?id=250&amp;page=1</a> 为例, 其中：</p><p>http，是协议；<br><a href="http://www.pitcoft.com,是服务器;/">www.pitcoft.com，是服务器；</a><br>80，是服务器上的网络端口号；<br>/news/index.html，是路径；<br>?id=250&amp;page=1，是查询。<br>大多数网页浏览器不要求用户输入网页中“http://”的部分，因为绝大多数网页内容是超文本传输协议文件。同样，“80”是超文本传输协议文件的常用端口号，因此一般也不必写明。一般来说用户只要键入统一资源定位符的一部分（<a href="http://www.pitcoft.com/news/index.html?id=250&amp;page=1%EF%BC%89%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BA%86%E3%80%82">www.pitcoft.com:80/news/index.html?id=250&amp;page=1）就可以了。</a></p><h3 id="HTTP请求格式"><a href="#HTTP请求格式" class="headerlink" title="HTTP请求格式"></a>HTTP请求格式</h3><p><img src="https://images2018.cnblogs.com/blog/867021/201803/867021-20180322001733298-201433635.jpg"></p><h3 id="HTTP响应格式"><a href="#HTTP响应格式" class="headerlink" title="HTTP响应格式"></a>HTTP响应格式</h3><p><img src="https://images2018.cnblogs.com/blog/867021/201803/867021-20180322001744323-654009411.jpg"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Web</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>HTTP协议</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>leetcode-143-重排链表</title>
+    <link href="/2020/11/03/leetcode-143-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/"/>
+    <url>/2020/11/03/leetcode-143-%E9%87%8D%E6%8E%92%E9%93%BE%E8%A1%A8/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>刷题笔记-leetcode 155.最小栈</title>
     <link href="/2020/10/31/leetcode-155-%E6%9C%80%E5%B0%8F%E6%A0%88/"/>
     <url>/2020/10/31/leetcode-155-%E6%9C%80%E5%B0%8F%E6%A0%88/</url>
