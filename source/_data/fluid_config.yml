@@ -390,7 +390,7 @@ about:  # 关于页需要手动创建，具体请见：https://hexo.fluid-dev.co
   subtitle:  # 打字机内容
   avatar: https://gitee.com/pitcoft/blogimg/raw/master/img/avatar.jpg # 头像
   name: Pitcoft
-  introduce: '在校学生 / 后端小白 / 大厂梦' # 支持 HTML
+  introduce: '在校学生' # 支持 HTML
   icons: # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，class 代表图标的 css class
     - { class: 'iconfont icon-github-fill', link: 'https://github.com/Pitcoft', tip: 'GitHub' }
     - { class: 'iconfont icon-mail', link: 'mailto: hi@pitcoft.com', tip: 'Email' }
