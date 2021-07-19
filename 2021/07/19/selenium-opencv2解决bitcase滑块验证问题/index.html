@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="Pitcoft">
   <meta name="keywords" content="">
-  <title>HTTP协议详解笔记 - Pitcoft - Catch the tail of time.</title>
+  <title>Selenium+OpenCV2解决bitcase滑块验证问题 - Pitcoft - Catch the tail of time.</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 
@@ -166,8 +166,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-01-19 12:20" pubdate>
-        2021年1月19日 中午
+      <time datetime="2021-07-19 11:45" pubdate>
+        2021年7月19日 中午
       </time>
     </span>
   
@@ -178,7 +178,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.5k 字
+      848 字
     </span>
   
 
@@ -188,7 +188,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      27
+      11
        分钟
     </span>
   
@@ -218,108 +218,93 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto" id="post">
             <!-- SEO header -->
-            <h1 style="display: none">HTTP协议详解笔记</h1>
+            <h1 style="display: none">Selenium+OpenCV2解决bitcase滑块验证问题</h1>
             
             <div class="markdown-body" id="post-body">
-              <h3 id="HTTP协议简介"><a href="#HTTP协议简介" class="headerlink" title="HTTP协议简介"></a>HTTP协议简介</h3><p>超文本传输协议（英文：Hyper Text Transfer Protocol，HTTP）是一种用于分布式、协作式和超媒体信息系统的应用层协议。HTTP是万维网的数据通信的基础。HTTP有很多应用，但最著名的是用于web浏览器和web服务器之间的双工通信。</p>
-<p>HTTP的发展是由蒂姆·伯纳斯-李于1989年在欧洲核子研究组织（CERN）所发起。HTTP的标准制定由万维网协会（World Wide Web Consortium，W3C）和互联网工程任务组（Internet Engineering Task Force，IETF）进行协调，最终发布了一系列的RFC，其中最著名的是1999年6月公布的 RFC 2616，定义了HTTP协议中现今广泛使用的一个版本——HTTP 1.1。</p>
-<p>2014年12月，互联网工程任务组（IETF）的Hypertext Transfer Protocol Bis（httpbis）工作小组将HTTP/2标准提议递交至IESG进行讨论，于2015年2月17日被批准。 HTTP/2标准于2015年5月以RFC 7540正式发表，取代HTTP 1.1成为HTTP的实现标准。</p>
-<p>推荐书籍：<a target="_blank" rel="noopener" href="https://book.douban.com/subject/10746113/">HTTP权威指南</a></p>
-<h3 id="HTTP协议概述"><a href="#HTTP协议概述" class="headerlink" title="HTTP协议概述"></a>HTTP协议概述</h3><p>HTTP是一个客户端终端（用户）和服务器端（网站）请求和应答的标准（TCP）。通过使用网页浏览器、网络爬虫或者其它的工具，客户端发起一个HTTP请求到服务器上指定端口（默认端口为80）。我们称这个客户端为用户代理程序（user agent）。应答的服务器上存储着一些资源，比如HTML文件和图像。我们称这个应答服务器为源服务器（origin server）。在用户代理和源服务器中间可能存在多个“中间层”，比如代理服务器、网关或者隧道（tunnel）。</p>
-<p>尽管TCP/IP协议是互联网上最流行的应用，HTTP协议中，并没有规定必须使用它或它支持的层。事实上，HTTP可以在任何互联网协议上，或其他网络上实现。HTTP假定其下层协议提供可靠的传输。因此，任何能够提供这种保证的协议都可以被其使用。因此也就是其在TCP/IP协议族使用TCP作为其传输层。</p>
-<p>通常，由HTTP客户端发起一个请求，创建一个到服务器指定端口（默认是80端口）的TCP连接。HTTP服务器则在那个端口监听客户端的请求。一旦收到请求，服务器会向客户端返回一个状态，比如”HTTP/1.1 200 OK”，以及返回的内容，如请求的文件、错误消息、或者其它信息。</p>
-<h3 id="HTTP工作原理"><a href="#HTTP工作原理" class="headerlink" title="HTTP工作原理"></a>HTTP工作原理</h3><p>HTTP协议定义Web客户端如何从Web服务器请求Web页面，以及服务器如何把Web页面传送给客户端。HTTP协议采用了请求/响应模型。客户端向服务器发送一个请求报文，请求报文包含请求的方法、URL、协议版本、请求头部和请求数据。服务器以一个状态行作为响应，响应的内容包括协议的版本、成功或者错误代码、服务器信息、响应头部和响应数据。</p>
-<p>以下是 HTTP 请求/响应的步骤：</p>
-<ol>
-<li><p>客户端连接到Web服务器<br>一个HTTP客户端，通常是浏览器，与Web服务器的HTTP端口（默认为80）建立一个TCP套接字连接。例如，<a href="https://pitcoft.com/">https://pitcoft.com/</a></p>
-</li>
-<li><p>发送HTTP请求<br>通过TCP套接字，客户端向Web服务器发送一个文本的请求报文，一个请求报文由请求行、请求头部、空行和请求数据4部分组成。</p>
-</li>
-<li><p>服务器接受请求并返回HTTP响应<br>Web服务器解析请求，定位请求资源。服务器将资源复本写到TCP套接字，由客户端读取。一个响应由状态行、响应头部、空行和响应数据4部分组成。</p>
-</li>
-<li><p>释放连接TCP连接<br>若connection 模式为close，则服务器主动关闭TCP连接，客户端被动关闭连接，释放TCP连接;若connection 模式为keepalive，则该连接会保持一段时间，在该时间内可以继续接收请求;</p>
-</li>
-<li><p>客户端浏览器解析HTML内容<br>客户端浏览器首先解析状态行，查看表明请求是否成功的状态代码。然后解析每一个响应头，响应头告知以下为若干字节的HTML文档和文档的字符集。客户端浏览器读取响应数据HTML，根据HTML的语法对其进行格式化，并在浏览器窗口中显示。</p>
-</li>
-</ol>
-<p>在浏览器地址栏键入URL，按下回车之后会经历以下流程：</p>
-<ul>
-<li><ol>
-<li>浏览器向 DNS 服务器请求解析该 URL 中的域名所对应的 IP 地址;</li>
-</ol>
-</li>
-<li><ol start="2">
-<li>解析出 IP 地址后，根据该 IP 地址和默认端口 80，和服务器建立TCP连接;</li>
-</ol>
-</li>
-<li><ol start="3">
-<li>浏览器发出读取文件(URL 中域名后面部分对应的文件)的HTTP 请求，该请求报文作为 TCP 三次</li>
-</ol>
-</li>
-<li><ol start="4">
-<li>握手的第三个报文的数据发送给服务器;</li>
-</ol>
-</li>
-<li><ol start="5">
-<li>服务器对浏览器请求作出响应，并把对应的 html 文本发送给浏览器;</li>
-</ol>
-</li>
-<li><ol start="6">
-<li>释放 TCP连接;</li>
-</ol>
-</li>
-<li><ol start="7">
-<li>浏览器将该 html 文本并显示内容; 　</li>
-</ol>
-</li>
-</ul>
-<h3 id="HTTP请求方法"><a href="#HTTP请求方法" class="headerlink" title="HTTP请求方法"></a>HTTP请求方法</h3><p>HTTP/1.1协议中共定义了八种方法（也叫“动作”）来以不同方式操作指定的资源：</p>
-<h4 id="GET"><a href="#GET" class="headerlink" title="GET"></a>GET</h4><p>向指定的资源发出“显示”请求。使用GET方法应该只用在读取数据，而不应当被用于产生“副作用”的操作中，例如在Web Application中。其中一个原因是GET可能会被网络蜘蛛等随意访问。</p>
-<h4 id="HEAD"><a href="#HEAD" class="headerlink" title="HEAD"></a>HEAD</h4><p>与GET方法一样，都是向服务器发出指定资源的请求。只不过服务器将不传回资源的本文部分。它的好处在于，使用这个方法可以在不必传输全部内容的情况下，就可以获取其中“关于该资源的信息”（元信息或称元数据）。</p>
-<h4 id="POST"><a href="#POST" class="headerlink" title="POST"></a>POST</h4><p>向指定资源提交数据，请求服务器进行处理（例如提交表单或者上传文件）。数据被包含在请求本文中。这个请求可能会创建新的资源或修改现有资源，或二者皆有。</p>
-<h4 id="PUT"><a href="#PUT" class="headerlink" title="PUT"></a>PUT</h4><p>向指定资源位置上传其最新内容。</p>
-<h4 id="DELETE"><a href="#DELETE" class="headerlink" title="DELETE"></a>DELETE</h4><p>请求服务器删除Request-URI所标识的资源。</p>
-<h4 id="TRACE"><a href="#TRACE" class="headerlink" title="TRACE"></a>TRACE</h4><p>回显服务器收到的请求，主要用于测试或诊断。</p>
-<h4 id="OPTIONS"><a href="#OPTIONS" class="headerlink" title="OPTIONS"></a>OPTIONS</h4><p>这个方法可使服务器传回该资源所支持的所有HTTP请求方法。用’*’来代替资源名称，向Web服务器发送OPTIONS请求，可以测试服务器功能是否正常运作。</p>
-<h4 id="CONNECT"><a href="#CONNECT" class="headerlink" title="CONNECT"></a>CONNECT</h4><p>HTTP/1.1协议中预留给能够将连接改为管道方式的代理服务器。通常用于SSL加密服务器的链接（经由非加密的HTTP代理服务器）。</p>
-<p>注意事项：</p>
-<ul>
-<li>方法名称是区分大小写的。当某个请求所针对的资源不支持对应的请求方法的时候，服务器应当返回状态码405（Method Not Allowed），当服务器不认识或者不支持对应的请求方法的时候，应当返回状态码501（Not Implemented）。</li>
-<li>HTTP服务器至少应该实现GET和HEAD方法，其他方法都是可选的。当然，所有的方法支持的实现都应当匹配下述的方法各自的语义定义。此外，除了上述方法，特定的HTTP服务器还能够扩展自定义的方法。例如PATCH（由 RFC 5789 指定的方法）用于将局部修改应用到资源。</li>
-</ul>
-<h3 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h3><p>所有HTTP响应的第一行都是状态行，依次是当前HTTP版本号，3位数字组成的状态代码，以及描述状态的短语，彼此由空格分隔。</p>
-<p>状态代码的第一个数字代表当前响应的类型：</p>
-<ul>
-<li>1xx消息——请求已被服务器接收，继续处理</li>
-<li>2xx成功——请求已成功被服务器接收、理解、并接受</li>
-<li>3xx重定向——需要后续操作才能完成这一请求</li>
-<li>4xx请求错误——请求含有词法错误或者无法被执行</li>
-<li>5xx服务器错误——服务器在处理某个正确请求时发生错误</li>
-</ul>
-<p>虽然 RFC 2616 中已经推荐了描述状态的短语，例如”200 OK”，”404 Not Found”，但是WEB开发者仍然能够自行决定采用何种短语，用以显示本地化的状态描述或者自定义信息。</p>
-<h3 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h3><p>超文本传输协议（HTTP）的统一资源定位符将从因特网获取信息的五个基本元素包括在一个简单的地址中：</p>
-<ul>
-<li><p>传送协议。</p>
-</li>
-<li><p>层级URL标记符号(为[//],固定不变)</p>
-</li>
-<li><p>访问资源需要的凭证信息（可省略）</p>
-</li>
-<li><p>服务器。（通常为域名，有时为IP地址）</p>
-</li>
-<li><p>端口号。（以数字方式表示，若为HTTP的默认值“:80”可省略）</p>
-</li>
-<li><p>路径。（以“/”字符区别路径中的每一个目录名称）</p>
-</li>
-<li><p>查询。（GET模式的窗体参数，以“?”字符为起点，每个参数以“&amp;”隔开，再以“=”分开参数名称与数据，通常以UTF8的URL编码，避开字符冲突的问题）</p>
-</li>
-<li><p>片段。以“#”字符为起点</p>
-</li>
-</ul>
-<p>以<a target="_blank" rel="noopener" href="https://www.pitcoft.com:80/news/index.html?id=250&amp;page=1">https://www.pitcoft.com:80/news/index.html?id=250&amp;page=1</a> 为例, 其中：</p>
-<p>http，是协议；<br><a target="_blank" rel="noopener" href="http://www.pitcoft.com,是服务器;/">www.pitcoft.com，是服务器；</a><br>80，是服务器上的网络端口号；<br>/news/index.html，是路径；<br>?id=250&amp;page=1，是查询。<br>大多数网页浏览器不要求用户输入网页中“http://”的部分，因为绝大多数网页内容是超文本传输协议文件。同样，“80”是超文本传输协议文件的常用端口号，因此一般也不必写明。一般来说用户只要键入统一资源定位符的一部分（<a target="_blank" rel="noopener" href="http://www.pitcoft.com/news/index.html?id=250&amp;page=1%EF%BC%89%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BA%86%E3%80%82">www.pitcoft.com:80/news/index.html?id=250&amp;page=1）就可以了。</a></p>
-<h3 id="HTTP请求格式"><a href="#HTTP请求格式" class="headerlink" title="HTTP请求格式"></a>HTTP请求格式</h3><p><img src="https://gitee.com/pitcoft/blogimg/raw/master/img/867021-20180322001733298-201433635.jpg" srcset="/img/loading.gif"></p>
-<h3 id="HTTP响应格式"><a href="#HTTP响应格式" class="headerlink" title="HTTP响应格式"></a>HTTP响应格式</h3><p><img src="https://gitee.com/pitcoft/blogimg/raw/master/img/867021-20180322001744323-654009411.jpg" srcset="/img/loading.gif"></p>
+              <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>网站login页面：<a target="_blank" rel="noopener" href="https://bitcash.jp/members/tri?act=login">https://bitcash.jp/members/tri?act=login</a></p>
+<p>今天在处理这个网站登录页面的时候，发现其有滑块验证码，要进行自动化滑块验证才能进行下一步的操作。</p>
+<p><img src="https://gitee.com/pitcoft/blogimg/raw/master/img/image-20210719121218638.png" srcset="/img/loading.gif" alt="image-20210719121218638"></p>
+<p><img src="https://gitee.com/pitcoft/blogimg/raw/master/img/codepic.jpg" srcset="/img/loading.gif"></p>
+<p>验证码整体包含在<code>div</code>盒子的<code>img</code>里，滑块部分和背景部分共用一张图片，所以打算用<code>opencv</code>去识别滑块缺口，用<code>selenium</code>模拟拖拽。</p>
+<h3 id="识别部分"><a href="#识别部分" class="headerlink" title="识别部分"></a>识别部分</h3><p>尝试使用<code>get_attribute(&quot;src&quot;)</code>直接把图片下载下来，发现下载下来的图片和网页上的不一致。</p>
+<p>验证码服务商为防止他人破解，同样的url在访问时候会回传不一样的图片，改用selenium进行截图全图，并截取相应的验证码部分。</p>
+<p>截取之后的效果：</p>
+<p><img src="https://gitee.com/pitcoft/blogimg/raw/master/img/image-20210719124152331.png" srcset="/img/loading.gif" alt="image-20210719124152331"></p>
+<p>通过HSV高低阈值，提取图像的白色区域，利用<code>inRange()</code>函数可实现二值化功能，</p>
+<p><code>inRange(InputArray src, InputArray lowerb, InputArray upperb, OutputArray dst)</code></p>
+<p>参数介绍：src：输入图像； lowerb：要提取颜色在hsv色彩空间取值的低值；upperb：要提取颜色在hsv色彩空间取值的高值；输出图</p>
+<p>hsv色彩取值表：</p>
+<p><img src="https://gitee.com/pitcoft/blogimg/raw/master/img/1322697-20180830095425840-318024232.png" srcset="/img/loading.gif" alt="img"></p>
+<p>这里取得是白色的区域，效果如下：</p>
+<p><img src="https://gitee.com/pitcoft/blogimg/raw/master/img/image-20210719131403193.png" srcset="/img/loading.gif" alt="image-20210719131403193"></p>
+<p>再寻找白色的像素点坐标，白色像素值是255<code>np.where(dst==255)</code></p>
+<p>去除不属于滑块的其他噪声，取白色像素点y坐标均值，最后返回一个偏移值供selenium进行拖拽移动。</p>
+<p>具体实现：</p>
+<pre><code class="hljs python"><span class="hljs-keyword">import</span> cv2
+<span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> os
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_xy</span>(<span class="hljs-params">filename</span>):</span>
+    imga = cv2.imread(filename)
+    img = imga[<span class="hljs-number">500</span>:<span class="hljs-number">585</span>, <span class="hljs-number">745</span>:<span class="hljs-number">1155</span>]
+    cv2.imshow(<span class="hljs-string">&#x27;img&#x27;</span>,img)
+    hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)  <span class="hljs-comment"># 色彩空间转换为hsv，分离.</span>
+
+    <span class="hljs-comment"># 色相（H）是色彩的基本属性，就是平常所说的颜色名称，如红色、黄色等。</span>
+    <span class="hljs-comment"># 饱和度（S）是指色彩的纯度，越高色彩越纯，低则逐渐变灰，取0-100%的数值。</span>
+    <span class="hljs-comment"># 明度（V），取0-100%。</span>
+    <span class="hljs-comment"># OpenCV中H,S,V范围是0-180,0-255,0-255</span>
+    low = np.array([<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">221</span>])
+    high = np.array([<span class="hljs-number">180</span>, <span class="hljs-number">30</span>, <span class="hljs-number">255</span>])
+
+    dst = cv2.inRange(src=hsv, lowerb=low, upperb=high)  <span class="hljs-comment"># HSV高低阈值，提取图像部分区域</span>
+
+    <span class="hljs-comment"># 寻找白色的像素点坐标。</span>
+    <span class="hljs-comment"># 白色像素值是255，所以np.where(dst==255)</span>
+    xy = np.column_stack(np.where(dst == <span class="hljs-number">255</span>))
+    avglist = []
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> xy:
+        <span class="hljs-keyword">if</span> i[<span class="hljs-number">0</span>] &gt; <span class="hljs-number">10</span> <span class="hljs-keyword">and</span> i[<span class="hljs-number">1</span>] &gt; <span class="hljs-number">10</span>:
+            avglist.append(i[<span class="hljs-number">1</span>])
+    num = (<span class="hljs-number">380</span>-(sum(avglist) / len(avglist))) * <span class="hljs-number">-1</span>
+    <span class="hljs-comment"># os.remove(filename)</span>
+    <span class="hljs-keyword">return</span> int(num)</code></pre>
+
+<h3 id="验证码拖拽"><a href="#验证码拖拽" class="headerlink" title="验证码拖拽"></a>验证码拖拽</h3><p>其实到了拖拽部分没什么好说的了，首先是全屏Chrome截图返回给opencv进行裁剪识别。</p>
+<p>其次利用selenium定位到具体的滑块位置，单击并保持<code>click_and_hold()</code>进行拖拽。</p>
+<p>根据之前识别来的偏移量进行移动，当然偏移量是相对总体来说的，具体使用的时候还得去调试。</p>
+<p>因为发现定位元素时，滑块和背景是共用一个img标签的，所以使用绝对坐标来定位。</p>
+<p>拖拽到指定位置后，释放鼠标就完成了。</p>
+<p>具体实现：</p>
+<pre><code class="hljs python"><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver
+<span class="hljs-keyword">from</span> selenium.webdriver.common.action_chains <span class="hljs-keyword">import</span> ActionChains
+<span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">import</span> getxy_hsv
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span>():</span>
+    dr = webdriver.Chrome()
+    dr.get(<span class="hljs-string">&#x27;https://bitcash.jp/members/tri?act=mypage&amp;suppressWarn=true&amp;ref=header&amp;sv=2&amp;_lh&#x27;</span>)
+    dr.maximize_window()
+    time.sleep(<span class="hljs-number">0.5</span>)
+    dr.get_screenshot_as_file(<span class="hljs-string">&quot;./1.png&quot;</span>)
+    xy = getxy_hsv.get_xy(<span class="hljs-string">&quot;./1.png&quot;</span>)
+    print(xy)
+
+    time.sleep(<span class="hljs-number">0.1</span>)
+
+    ActionChains(dr).move_by_offset(<span class="hljs-number">1120</span>, <span class="hljs-number">540</span>).click_and_hold().perform()
+    time.sleep(<span class="hljs-number">0.5</span>)
+    ActionChains(dr).move_by_offset(xy, <span class="hljs-number">-5</span>).click().perform()
+    <span class="hljs-comment"># 释放鼠标</span>
+    ActionChains(dr).release().perform()
+    dr.quit()
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:
+    run()</code></pre>
+
+<h3 id="验证效果"><a href="#验证效果" class="headerlink" title="验证效果"></a>验证效果</h3><p><img src="https://gitee.com/pitcoft/blogimg/raw/master/img/%E5%BD%95%E5%88%B6_2021_07_19_13_31_23_113.gif" srcset="/img/loading.gif" alt="录制_2021_07_19_13_31_23_113"></p>
 
             </div>
             <hr>
@@ -337,7 +322,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/HTTP%E5%8D%8F%E8%AE%AE/">HTTP协议</a>
+                      <a class="hover-with-bg" href="/tags/Selenium/">Selenium</a>
+                    
+                      <a class="hover-with-bg" href="/tags/OpenCV/">OpenCV</a>
                     
                   </div>
                 
@@ -350,18 +337,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/07/19/selenium-opencv2%E8%A7%A3%E5%86%B3bitcase%E6%BB%91%E5%9D%97%E9%AA%8C%E8%AF%81%E9%97%AE%E9%A2%98/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Selenium+OpenCV2解决bitcase滑块验证问题</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/10/31/leetcode-155-%E6%9C%80%E5%B0%8F%E6%A0%88/">
-                        <span class="hidden-mobile">刷题笔记-leetcode 155.最小栈</span>
+                      <a href="/2021/01/19/HTTP%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/">
+                        <span class="hidden-mobile">HTTP协议详解笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -562,7 +543,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "HTTP协议详解笔记&nbsp;",
+        "Selenium+OpenCV2解决bitcase滑块验证问题&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
