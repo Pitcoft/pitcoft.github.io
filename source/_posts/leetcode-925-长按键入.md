@@ -1,8 +1,8 @@
 ---
 title: 刷题笔记-leetcode 925.长按键入
 date: 2020-10-30 22:00:55
-index_img: https://gitee.com/pitcoft/blogimg/raw/master/img/ad10b126218a464bc4154fcb3f156bef%20(1).jpg
-banner_img: https://gitee.com/pitcoft/blogimg/raw/master/img/bda8e32d19707e8ac881c6a8ee9cd733.jpg
+index_img: https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/ad10b126218a464bc4154fcb3f156bef%20(1).jpg
+banner_img: https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/bda8e32d19707e8ac881c6a8ee9cd733.jpg
 math: true
 categories:
 - leetcode

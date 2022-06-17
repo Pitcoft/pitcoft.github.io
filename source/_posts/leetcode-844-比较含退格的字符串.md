@@ -1,8 +1,8 @@
 ---
 title: 刷题笔记-leetcode 844.比较含退格的字符串
 date: 2020-10-20 23:24:28
-index_img: https://gitee.com/pitcoft/blogimg/raw/master/img/ff1baa1afd115d0ebb4788508b27ef8f%20(1).jpg
-banner_img: https://gitee.com/pitcoft/blogimg/raw/master/img/bda8e32d19707e8ac881c6a8ee9cd733.jpg
+index_img: https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/ff1baa1afd115d0ebb4788508b27ef8f%20(1).jpg
+banner_img: https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/bda8e32d19707e8ac881c6a8ee9cd733.jpg
 math: true
 categories:
 - leetcode

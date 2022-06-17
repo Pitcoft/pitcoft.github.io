@@ -2,8 +2,8 @@
 layout: post
 title: Selenium+OpenCV2解决bitcase滑块验证问题
 date: 2021-07-19 11:45:39
-index_img: https://gitee.com/pitcoft/blogimg/raw/master/img/20210610.jpg
-banner_img: https://gitee.com/pitcoft/blogimg/raw/master/img/bda8e32d19707e8ac881c6a8ee9cd733.jpg
+index_img: https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/20210610.jpg
+banner_img: https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/bda8e32d19707e8ac881c6a8ee9cd733.jpg
 categories:
 - Web
 tags:
@@ -18,9 +18,9 @@ copyright: true
 
 今天在处理这个网站登录页面的时候，发现其有滑块验证码，要进行自动化滑块验证才能进行下一步的操作。
 
-![image-20210719121218638](https://gitee.com/pitcoft/blogimg/raw/master/img/image-20210719121218638.png)
+![image-20210719121218638](https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/image-20210719121218638.png)
 
-![](https://gitee.com/pitcoft/blogimg/raw/master/img/codepic.jpg)
+![](https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/codepic.jpg)
 
 验证码整体包含在`div`盒子的`img`里，滑块部分和背景部分共用一张图片，所以打算用`opencv`去识别滑块缺口，用`selenium`模拟拖拽。
 
@@ -32,7 +32,7 @@ copyright: true
 
 截取之后的效果：
 
-![image-20210719124152331](https://gitee.com/pitcoft/blogimg/raw/master/img/image-20210719124152331.png)
+![image-20210719124152331](https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/image-20210719124152331.png)
 
 通过HSV高低阈值，提取图像的白色区域，利用`inRange()`函数可实现二值化功能，
 
@@ -42,11 +42,11 @@ copyright: true
 
 hsv色彩取值表：
 
-![img](https://gitee.com/pitcoft/blogimg/raw/master/img/1322697-20180830095425840-318024232.png)
+![img](https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/1322697-20180830095425840-318024232.png)
 
 这里取得是白色的区域，效果如下：
 
-![image-20210719131403193](https://gitee.com/pitcoft/blogimg/raw/master/img/image-20210719131403193.png)
+![image-20210719131403193](https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/image-20210719131403193.png)
 
 再寻找白色的像素点坐标，白色像素值是255`np.where(dst==255)`
 
@@ -134,4 +134,4 @@ if __name__ == '__main__':
 
 
 
-![录制_2021_07_19_13_31_23_113](https://gitee.com/pitcoft/blogimg/raw/master/img/%E5%BD%95%E5%88%B6_2021_07_19_13_31_23_113.gif)
+![录制_2021_07_19_13_31_23_113](https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/%E5%BD%95%E5%88%B6_2021_07_19_13_31_23_113.gif)

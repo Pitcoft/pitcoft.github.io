@@ -1,8 +1,8 @@
 ---
 title: 刷题笔记-leetcode 561.数组拆分I
 date: 2020-10-27 23:01:01
-index_img: https://gitee.com/pitcoft/blogimg/raw/master/img/40946355dabb3d8f6e0c8e1f3ca9d11e%20(1).jpg
-banner_img: https://gitee.com/pitcoft/blogimg/raw/master/img/bda8e32d19707e8ac881c6a8ee9cd733.jpg
+index_img: https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/40946355dabb3d8f6e0c8e1f3ca9d11e%20(1).jpg
+banner_img: https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/bda8e32d19707e8ac881c6a8ee9cd733.jpg
 math: true
 categories:
 - leetcode

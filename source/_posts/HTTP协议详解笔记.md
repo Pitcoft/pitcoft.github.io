@@ -1,8 +1,8 @@
 ---
 title: HTTP协议详解笔记
 date: 2021-01-19 12:20:01
-index_img: https://gitee.com/pitcoft/blogimg/raw/master/img/wffdsv.jpg
-banner_img: https://gitee.com/pitcoft/blogimg/raw/master/img/bda8e32d19707e8ac881c6a8ee9cd733.jpg
+index_img: https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/wffdsv.jpg
+banner_img: https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/bda8e32d19707e8ac881c6a8ee9cd733.jpg
 categories:
 - Web
 tags:
@@ -137,8 +137,8 @@ www.pitcoft.com，是服务器；
 
 ### HTTP请求格式
 
-![](https://gitee.com/pitcoft/blogimg/raw/master/img/867021-20180322001733298-201433635.jpg)
+![](https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/867021-20180322001733298-201433635.jpg)
 
 ### HTTP响应格式
 
-![](https://gitee.com/pitcoft/blogimg/raw/master/img/867021-20180322001744323-654009411.jpg)
+![](https://pitcoft-1251621975.cos.ap-hongkong.myqcloud.com/img/867021-20180322001744323-654009411.jpg)
